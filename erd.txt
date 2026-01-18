@@ -1,0 +1,1774 @@
+Table announcements {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  start_date date [not null]
+  end_date date [not null]
+  description text [not null]
+  is_active tinyint [not null, default: 1]
+  business_id bigint [ not null]
+  created_by bigint []
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+
+  Indexes {
+    (business_id)
+  }
+}
+
+Table asset_types {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  is_active tinyint [not null, default: 1]
+  business_id bigint [ not null]
+  created_by bigint []
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+
+  Indexes {
+    (business_id)
+  }
+}
+Table attendances {
+  id bigint [pk, not null]
+  note text
+  in_geolocation varchar(255)
+  out_geolocation varchar(255)
+  user_id bigint [not null]
+  work_location_id bigint [not null]
+  project_id bigint
+  in_date date [not null]
+  does_break_taken tinyint [not null]
+  in_time time
+  out_time time
+  capacity_hours double [not null]
+  behavior enum('absent','late','regular','early') [not null]
+  work_hours_delta double [not null]
+  regular_work_hours double [not null]
+  total_paid_hours double [not null]
+  break_type enum('paid','unpaid') [not null]
+  break_hours double [not null]
+  is_weekend tinyint [not null]
+  holiday_id bigint
+  leave_record_id bigint
+  overtime_start_time time
+  overtime_end_time time
+  overtime_hours double [not null]
+  work_shift_start_at time [not null]
+  work_shift_end_at time [not null]
+  work_shift_history_id bigint [not null]
+  punch_in_time_tolerance double
+  status enum('pending_approval','approved','rejected') [not null, default: 'pending_approval']
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  regular_hours_salary double [not null]
+  overtime_hours_salary double [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table attendance_arrears {
+  id bigint [pk, not null]
+  attendance_id bigint [not null]
+  status enum('pending_approval','approved','rejected') [not null, default: 'pending_approval']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table attendance_histories {
+  id bigint [pk, not null]
+  attendance_id bigint
+  actor_id bigint
+  action varchar(255) [not null]
+  attendance_created_at date [not null]
+  attendance_updated_at date [not null]
+  note text
+  in_geolocation varchar(255)
+  out_geolocation varchar(255)
+  user_id bigint [not null]
+  work_location_id bigint [not null]
+  project_id bigint
+  in_date date [not null]
+  does_break_taken tinyint [not null]
+  in_time time
+  out_time time
+  capacity_hours double [not null]
+  behavior enum('absent','late','regular','early') [not null]
+  work_hours_delta double [not null]
+  regular_work_hours double [not null]
+  total_paid_hours double [not null]
+  break_type enum('paid','unpaid') [not null]
+  break_hours double [not null]
+  is_weekend tinyint [not null]
+  holiday_id bigint
+  leave_record_id bigint
+  overtime_start_time time
+  overtime_end_time time
+  overtime_hours double [not null]
+  work_shift_start_at time [not null]
+  work_shift_end_at time [not null]
+  work_shift_history_id bigint [not null]
+  punch_in_time_tolerance double
+  status enum('pending_approval','approved','rejected') [not null, default: 'pending_approval']
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  regular_hours_salary double [not null]
+  overtime_hours_salary double [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table banks {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table businesses {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  start_date date [not null]
+  about text
+  web_page varchar(255)
+  phone varchar(255)
+  email varchar(255)
+  additional_information text
+  address_line_1 varchar(255)
+  address_line_2 varchar(255)
+  lat varchar(255)
+  long varchar(255)
+  country varchar(255) [not null]
+  city varchar(255) [not null]
+  postcode varchar(255)
+  currency varchar(255)
+  logo varchar(255)
+  image varchar(255)
+  background_image varchar(255)
+  service_plan_id bigint
+  pension_scheme_registered tinyint [not null, default: 0]
+  pension_scheme_name varchar(255)
+  pension_scheme_letters longtext
+  status varchar(255) [not null, default: 'pending']
+  is_active tinyint [not null, default: 0]
+  is_self_registered_businesses tinyint [not null, default: 0]
+  owner_id bigint [not null]
+  created_by bigint [not null]
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+Table business_subscriptions {
+  id bigint [pk, not null]
+  business_id bigint [not null]
+  service_plan_id bigint [not null]
+  start_date datetime [not null]
+  end_date datetime [not null]
+  status enum('active','canceled') [not null, default: 'active']
+  amount double
+  paid_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table business_tiers {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  is_active tinyint [not null, default: 0]
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+Table business_times {
+  id bigint [pk, not null]
+  day int [not null]
+  start_at time
+  end_at time
+  is_weekend tinyint [not null]
+  business_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table candidates {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  email varchar(255) [not null]
+  phone varchar(255) [not null]
+  experience_years int [not null]
+  education_level enum('no_formal_education','primary_education','secondary_education_or_high_school','ged','vocational_qualification','bachelor_degree','master_degree','doctorate_or_higher')
+  job_platform varchar(255) [not null]
+  cover_letter text
+  application_date date [not null]
+  interview_date date
+  feedback text [not null]
+  status enum('applied','in_progress','interview_stage_1','interview_stage_2','final_interview','rejected','job_offered','hired') [not null, default: 'applied']
+  job_listing_id bigint [not null]
+  attachments longtext
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+Table comments {
+  id bigint [pk, not null]
+  description text [not null]
+  attachments longtext
+  status enum('open','closed') [not null, default: 'open']
+  priority enum('low','medium','high') [not null, default: 'medium']
+  visibility enum('public','private') [not null, default: 'public']
+  tags text
+  resolution text
+  feedback longtext
+  hidden_note text
+  history longtext
+  related_task_id bigint
+  task_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table dashboard_widgets {
+  id bigint [pk, not null]
+  widget_name varchar(255) [not null]
+  widget_order int [not null]
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table departments {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 1]
+  manager_id bigint
+  parent_id bigint
+  business_id bigint [not null]
+  work_location_id bigint [not null]
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+Table department_announcements {
+  id bigint [pk, not null]
+  department_id bigint
+  announcement_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table department_holidays {
+  id bigint [pk, not null]
+  department_id bigint
+  holiday_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table department_projects {
+  id bigint [pk, not null]
+  department_id bigint [not null]
+  project_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table department_users {
+  id bigint [pk, not null]
+  department_id bigint
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table department_work_shifts {
+  id bigint [pk, not null]
+  department_id bigint [not null]
+  work_shift_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table designations {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_banks {
+  id bigint [pk, not null]
+  bank_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_designations {
+  id bigint [pk, not null]
+  designation_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_employment_statuses {
+  id bigint [pk, not null]
+  employment_status_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_job_platforms {
+  id bigint [pk, not null]
+  job_platform_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table disabled_job_types {
+  id bigint [pk, not null]
+  job_type_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_recruitment_processes {
+  id bigint [pk, not null]
+  recruitment_process_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_setting_leave_types {
+  id bigint [pk, not null]
+  setting_leave_type_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table disabled_work_locations {
+  id bigint [pk, not null]
+  work_location_id bigint [not null]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table email_templates {
+  id bigint [pk, not null]
+  name varchar(255)
+  type varchar(255) [not null]
+  template text [not null]
+  is_active tinyint [not null]
+  wrapper_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table email_template_wrappers {
+  id bigint [pk, not null]
+  name varchar(255)
+  type varchar(255) [not null]
+  template text [not null]
+  is_active tinyint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+Table employee_address_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  address_line_1 varchar(255)
+  address_line_2 varchar(255)
+  country varchar(255)
+  city varchar(255)
+  postcode varchar(255)
+  lat varchar(255)
+  long varchar(255)
+  from_date date [not null]
+  to_date date
+  is_manual tinyint [not null, default: 0]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_department_work_shift_histories {
+  id bigint [pk, not null]
+  department_id bigint [not null]
+  work_shift_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_passport_detail_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  business_id bigint [not null]
+  passport_number varchar(255) [not null]
+  passport_issue_date date [not null]
+  passport_expiry_date date [not null]
+  place_of_issue varchar(255) [not null]
+  from_date date [not null]
+  to_date date
+  is_manual tinyint [not null, default: 0]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_pension_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  business_id bigint [not null]
+  pension_eligible tinyint [not null]
+  pension_enrollment_issue_date date
+  pension_letters longtext
+  pension_scheme_status enum('opt_in', 'opt_out')
+  pension_scheme_opt_out_date date
+  pension_re_enrollment_due_date date
+  from_date date [not null]
+  to_date date
+  is_manual tinyint [not null, default: 0]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_project_histories {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  start_date date [not null]
+  end_date date
+  status enum('pending', 'in_progress', 'completed') [not null]
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  from_date date [not null]
+  to_date date
+  project_id bigint
+  user_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table employee_right_to_works {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  business_id bigint [not null]
+  right_to_work_code varchar(255) [not null]
+  right_to_work_check_date date [not null]
+  right_to_work_expiry_date date [not null]
+  right_to_work_docs longtext [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_right_to_work_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  business_id bigint [not null]
+  right_to_work_code varchar(255) [not null]
+  right_to_work_check_date date [not null]
+  right_to_work_expiry_date date [not null]
+  right_to_work_docs longtext [not null]
+  from_date date [not null]
+  to_date date
+  is_manual tinyint [not null, default: 0]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_sponsorship_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  business_id bigint [not null]
+  date_assigned date [not null]
+  expiry_date date [not null]
+  status enum('pending','approved','denied','visa_granted') [not null, default: 'pending']
+  note text [not null]
+  certificate_number text [not null]
+  current_certificate_status enum('unassigned','assigned','visa_applied','visa_rejected','visa_grantes','withdrawal') [not null, default: 'unassigned']
+  is_sponsorship_withdrawn tinyint [not null]
+  from_date date [not null]
+  to_date date
+  is_manual tinyint [not null, default: 0]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_user_work_shift_histories {
+  id bigint [pk, not null]
+  user_id bigint
+  from_date date [not null]
+  to_date date
+  work_shift_id bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table employee_visa_detail_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  business_id bigint [not null]
+  BRP_number varchar(255) [not null]
+  visa_issue_date date [not null]
+  visa_expiry_date date [not null]
+  place_of_issue varchar(255) [not null]
+  visa_docs longtext [not null]
+  from_date date [not null]
+  to_date date
+  is_manual tinyint [not null, default: 0]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table employment_statuses {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  color varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table holidays {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  start_date date [not null]
+  end_date date [not null]
+  repeats_annually tinyint [not null, default: 0]
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+
+
+Table job_listings {
+  id bigint [pk, not null]
+  title varchar(255) [not null]
+  description text [not null]
+  minimum_salary double [not null]
+  maximum_salary double [not null]
+  experience_level varchar(255) [not null]
+  job_type_id bigint
+  work_location_id bigint [not null]
+  required_skills text [not null]
+  application_deadline date [not null]
+  posted_on date [not null]
+  department_id bigint
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table job_listing_job_platforms {
+  id bigint [pk, not null]
+  job_platform_id bigint
+  job_listing_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table job_platforms {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table job_types {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table leaves {
+  id bigint [pk, not null]
+  leave_duration enum('single_day','multiple_day','half_day','hours') [not null]
+  day_type enum('first_half','last_half')
+  leave_type_id bigint [not null]
+  user_id bigint [not null]
+  date date
+  note varchar(255) [not null]
+  start_date date
+  end_date date
+  start_time time
+  end_time time
+  status enum('pending_approval','in_progress','approved','rejected') [not null, default: 'pending_approval']
+  attachments longtext
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table leave_approvals {
+  id bigint [pk, not null]
+  is_approved tinyint [not null]
+  leave_id bigint [not null]
+  created_by bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+Table leave_histories {
+  id bigint [pk, not null]
+  leave_id bigint
+  actor_id bigint
+  action varchar(255) [not null]
+  is_approved tinyint
+  leave_created_at date [not null]
+  leave_updated_at date [not null]
+  leave_duration enum('single_day','multiple_day','half_day','hours') [not null]
+  day_type enum('first_half','last_half')
+  leave_type_id bigint [not null]
+  user_id bigint [not null]
+  date date
+  note varchar(255) [not null]
+  start_date date
+  end_date date
+  start_time time
+  end_time time
+  status enum('pending_approval','in_progress','approved','rejected') [not null, default: 'pending_approval']
+  attachments longtext
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table leave_records {
+  id bigint [pk, not null]
+  leave_id bigint [not null]
+  date date [not null]
+  start_time time [not null]
+  end_time time [not null]
+  capacity_hours double [not null]
+  leave_hours double [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table leave_record_arrears {
+  id bigint [pk, not null]
+  leave_record_id bigint [not null]
+  status enum('pending_approval','approved','rejected') [not null, default: 'pending_approval']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table leave_record_histories {
+  id bigint [pk, not null]
+  leave_id bigint [not null]
+  date date [not null]
+  start_time time [not null]
+  end_time time [not null]
+  capacity_hours double [not null]
+  leave_hours double [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+Table modules {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  is_enabled tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_tier_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table notifications {
+  id bigint [pk, not null]
+  entity_id bigint [not null]
+  entity_ids longtext
+  entity_name bigint [not null]
+  notification_title text [not null]
+  notification_description text [not null]
+  notification_link text [not null]
+  sender_id bigint [not null]
+  receiver_id bigint [not null]
+  business_id bigint
+  is_system_generated tinyint
+  notification_template_id bigint
+  status enum('read','unread') [default: 'unread']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table notification_templates {
+  id bigint [pk, not null]
+  name varchar(255)
+  type varchar(255) [not null]
+  title_template text [not null]
+  template text [not null]
+  link text [not null]
+  is_active tinyint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table paid_leave_employment_statuses {
+  id bigint [pk, not null]
+  setting_leave_id bigint
+  employment_status_id bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payment_types {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text [not null]
+  is_active tinyint [not null, default: 0]
+  created_at timestamp
+  updated_at timestamp
+}
+Table payrolls {
+  id bigint [pk, not null]
+  payroll_name varchar(255) [not null]
+  payrun_id bigint
+  user_id bigint [not null]
+  total_holiday_hours double
+  total_paid_leave_hours double
+  total_regular_attendance_hours double
+  total_overtime_attendance_hours double
+  regular_hours double
+  overtime_hours double
+  holiday_hours_salary double
+  leave_hours_salary double
+  regular_attendance_hours_salary double
+  overtime_attendance_hours_salary double
+  regular_hours_salary double
+  overtime_hours_salary double
+  status enum('pending_approval','approved','rejected') [not null, default: 'pending_approval']
+  hourly_salary double [not null]
+  overtime_salary double [not null]
+  holiday_hours double [not null]
+  start_date date [not null]
+  end_date date [not null]
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payroll_attendances {
+  id bigint [pk, not null]
+  payroll_id bigint [not null]
+  attendance_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payroll_holidays {
+  id bigint [pk, not null]
+  payroll_id bigint [not null]
+  holiday_id bigint [not null]
+  date date [not null]
+  hours int [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payroll_leave_records {
+  id bigint [pk, not null]
+  payroll_id bigint [not null]
+  leave_record_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payruns {
+  id bigint [pk, not null]
+  period_type enum('weekly','monthly','customized') [not null, default: 'weekly']
+  start_date date
+  end_date date
+  consider_type enum('hour','daily_log','none') [not null]
+  consider_overtime tinyint [not null]
+  notes text
+  is_active tinyint [not null]
+  created_by bigint
+  business_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payrun_departments {
+  id bigint [pk, not null]
+  payrun_id bigint [not null]
+  department_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payrun_users {
+  id bigint [pk, not null]
+  payrun_id bigint [not null]
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payslips {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  payroll_id bigint
+  payment_method enum('bank_transfer','cash','cheque','other') [not null]
+  month int [not null]
+  year int [not null]
+  payment_amount double [not null]
+  payment_notes text
+  payment_date date [not null]
+  payslip_file varchar(255)
+  payment_record_file longtext
+  gross_pay double [not null, default: 0]
+  tax double [not null, default: 0]
+  employee_ni_deduction double [not null, default: 0]
+  employer_ni double [not null, default: 0]
+  bank_id bigint
+  sort_code varchar(255)
+  account_number varchar(255)
+  account_name varchar(255)
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table projects {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  start_date date [not null]
+  end_date date
+  status enum('pending','in_progress','completed') [not null]
+  is_default tinyint [not null, default: 0]
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table recruitment_processes {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table reminders {
+  id bigint [pk, not null]
+  title varchar(255) [not null]
+  model_name varchar(255) [not null]
+  issue_date_column varchar(255) [not null]
+  expiry_date_column varchar(255) [not null]
+  user_relationship varchar(255) [not null]
+  user_eligible_field varchar(255) [not null]
+  entity_name varchar(255) [not null]
+  duration int [not null]
+  duration_unit enum('days','weeks','months') [not null]
+  send_time enum('before_expiry','after_expiry') [not null]
+  frequency_after_first_reminder int
+  keep_sending_until_update tinyint [not null]
+  business_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table salary_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  salary_per_annum double [default: 0]
+  weekly_contractual_hours double [default: 0]
+  minimum_working_days_per_week int [default: 0]
+  overtime_rate double [default: 0]
+  from_date date [not null]
+  to_date date
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table service_plans {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  set_up_amount double [not null]
+  duration_months double [not null]
+  price double [not null]
+  business_tier_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_attendances {
+  id bigint [pk, not null]
+  punch_in_time_tolerance double
+  work_availability_definition int
+  punch_in_out_alert tinyint
+  punch_in_out_interval int
+  alert_area longtext []
+  service_name varchar(255)
+  api_key text
+  auto_approval tinyint
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_attendance_special_roles {
+  id bigint [pk, not null]
+  setting_attendance_id bigint
+  role_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_attendance_special_users {
+  id bigint [pk, not null]
+  setting_attendance_id bigint
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_leaves {
+  id bigint [pk, not null]
+  start_month tinyint [not null]
+  approval_level enum('single','multiple') [not null, default: 'single']
+  allow_bypass tinyint [not null]
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_leave_special_roles {
+  id bigint [pk, not null]
+  setting_leave_id bigint
+  role_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_leave_special_users {
+  id bigint [pk, not null]
+  setting_leave_id bigint
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_leave_types {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  type enum('paid','unpaid') [not null, default: 'unpaid']
+  amount varchar(255) [not null]
+  is_earning_enabled tinyint [not null]
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_payment_dates {
+  id bigint [pk, not null]
+  payment_type enum('weekly','monthly','custom') [not null]
+  day_of_week tinyint []
+  day_of_month tinyint []
+  custom_frequency_interval int []
+  custom_frequency_unit enum('days','weeks','months')
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  role_specific_settings longtext []
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_payruns {
+  id bigint [pk, not null]
+  payrun_period enum('monthly','weekly') [not null]
+  consider_type enum('hour','daily_log','none') [not null]
+  consider_overtime tinyint [not null]
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_payrun_restricted_departments {
+  id bigint [pk, not null]
+  setting_payrun_id bigint
+  department_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table setting_payrun_restricted_users {
+  id bigint [pk, not null]
+  setting_payrun_id bigint
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+Table setting_payslips {
+  id bigint [pk, not null]
+  logo varchar(255) [not null]
+  title varchar(255) [not null]
+  address varchar(255) [not null]
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table social_sites {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  icon varchar(255) [not null]
+  link varchar(255) [not null]
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table statuses {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table tasks {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  start_date date [not null]
+  due_date date
+  end_date date
+  status enum('pending','in_progress','done','in_review','approved','cancelled','rejected','draft') [not null, default: 'pending']
+  project_id bigint [not null]
+  parent_task_id bigint
+  assigned_by bigint
+  is_active tinyint [not null, default: 1]
+  business_id bigint [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table task_assignees {
+  id bigint [pk, not null]
+  assignee_id bigint
+  task_id bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table task_comment_mentions {
+  id bigint [pk, not null]
+  comment_id bigint [not null]
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table unpaid_leave_employment_statuses {
+  id bigint [pk, not null]
+  setting_leave_id bigint
+  employment_status_id bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table users {
+  id bigint [pk, not null]
+  first_name varchar(255) [not null]
+  middle_name varchar(255)
+  last_name varchar(255) [not null]
+  ni_number varchar(255)
+  pension_eligible tinyint
+  user_name varchar(255)
+  emergency_contact_details longtext []
+  color_theme_name varchar(255) [not null, default: 'default']
+  user_id varchar(255)
+  gender enum('male','female','other')
+  is_in_employee tinyint [default: 0]
+  designation_id bigint
+  employment_status_id bigint
+  joining_date date [default: '2024-03-06']
+  date_of_birth date
+  salary_per_annum double [default: 0]
+  weekly_contractual_hours double [default: 0]
+  minimum_working_days_per_week int [default: 0]
+  overtime_rate double [default: 0]
+  is_active_visa_details double [default: 0]
+  is_active_right_to_works double [default: 0]
+  phone varchar(255)
+  image varchar(255)
+  address_line_1 varchar(255)
+  address_line_2 varchar(255)
+  country varchar(255)
+  city varchar(255)
+  postcode varchar(255)
+  lat varchar(255)
+  long varchar(255)
+  email varchar(255) [not null]
+  email_verify_token varchar(255)
+  email_verify_token_expires varchar(255)
+  email_verified_at timestamp
+  password varchar(255) [not null]
+  reset_password_token varchar(255)
+  reset_password_expires varchar(255)
+  site_redirect_token varchar(255)
+  login_attempts int [not null, default: 0]
+  last_failed_login_attempt_at datetime
+  background_image varchar(255)
+  immigration_status enum('british_citizen','ilr','immigrant','sponsored')
+  is_sponsorship_offered tinyint [default: 0]
+  work_location_id bigint
+  recruitment_process_id bigint
+  bank_id bigint
+  sort_code varchar(255)
+  account_number varchar(255)
+  account_name varchar(255)
+  is_active tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  deleted_at timestamp
+  remember_token varchar(100)
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_announcements {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  announcement_id bigint [not null]
+  status enum('read','unread') [default: 'unread']
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_assets {
+  id bigint [pk, not null]
+  user_id bigint
+  business_id bigint [not null]
+  name varchar(255) [not null]
+  code varchar(255) [not null]
+  serial_number varchar(255) [not null]
+  is_working tinyint [not null]
+  status enum('available','assigned','damaged','lost','reserved','repair_waiting') [not null, default: 'available']
+  type varchar(255) [not null]
+  image varchar(255)
+  date date [not null]
+  note text [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_asset_histories {
+  id bigint [pk, not null]
+  user_id bigint
+  user_asset_id bigint
+  business_id bigint [not null]
+  name varchar(255) [not null]
+  code varchar(255) [not null]
+  serial_number varchar(255) [not null]
+  is_working tinyint [not null]
+  status enum('available','assigned','damaged','lost','reserved','repair_waiting') [not null, default: 'available']
+  type varchar(255) [not null]
+  image varchar(255)
+  date date [not null]
+  note text [not null]
+  from_date date [not null]
+  to_date date
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_documents {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  name varchar(255) [not null]
+  file_name varchar(255) [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_education_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  degree varchar(255) [not null]
+  major varchar(255) [not null]
+  school_name varchar(255) [not null]
+  graduation_date date [not null]
+  start_date date [not null]
+  achievements text
+  description text
+  address varchar(255)
+  country varchar(255)
+  city varchar(255)
+  postcode varchar(255)
+  is_current tinyint [not null, default: 0]
+  attachments longtext
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_holidays {
+  id bigint [pk, not null]
+  user_id bigint
+  holiday_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_job_histories {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  company_name varchar(255) [not null]
+  country varchar(255) [not null]
+  job_title varchar(255) [not null]
+  employment_start_date date [not null]
+  employment_end_date date
+  responsibilities text
+  supervisor_name varchar(255)
+  contact_information varchar(255)
+  work_location varchar(255)
+  achievements text
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_notes {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  title varchar(255) [not null]
+  description text [not null]
+  history longtext
+  created_by bigint
+  updated_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_note_mentions {
+  id bigint [pk, not null]
+  user_note_id bigint [not null]
+  user_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_projects {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  project_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_recruitment_processes {
+  id bigint [pk, not null]
+  recruitment_process_id bigint
+  user_id bigint
+  description text
+  attachments longtext
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table user_social_sites {
+  id bigint [pk, not null]
+  social_site_id bigint
+  user_id bigint
+  profile_link varchar(255) [not null]
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Table user_work_shifts {
+  id bigint [pk, not null]
+  user_id bigint [not null]
+  work_shift_id bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table work_locations {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  is_active tinyint [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  business_id bigint
+  created_by bigint [not null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table work_shifts {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  type enum('regular','scheduled') [not null, default: 'regular']
+  attendances_count int [not null, default: 0]
+  is_default tinyint [not null, default: 0]
+  is_active tinyint [not null, default: 1]
+  is_business_default tinyint [not null, default: 0]
+  is_personal tinyint [not null, default: 0]
+  break_type enum('paid','unpaid') [not null]
+  break_hours double [not null, default: 0]
+  business_id bigint
+  created_by bigint
+  deleted_at timestamp
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table work_shift_details {
+  id bigint [pk, not null]
+  work_shift_id bigint [not null]
+  day tinyint [not null]
+  is_weekend tinyint [not null]
+  start_at time
+  end_at time
+  created_at timestamp
+  updated_at timestamp
+}
+Table work_shift_detail_histories {
+  id bigint [pk, not null]
+  work_shift_id bigint [not null]
+  day tinyint [not null]
+  is_weekend tinyint [not null]
+  start_at time
+  end_at time
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table work_shift_histories {
+  id bigint [pk, not null]
+  name varchar(255) [not null]
+  description text
+  type enum('regular','scheduled') [not null, default: 'regular']
+  attendances_count int [not null, default: 0]
+  from_date date [not null]
+  to_date date
+  is_default tinyint [not null, default: 0]
+  is_active tinyint [not null, default: 1]
+  is_business_default tinyint [not null, default: 0]
+  is_personal tinyint [not null, default: 0]
+  break_type enum('paid','unpaid') [not null]
+  break_hours double [not null, default: 0]
+  business_id bigint
+  work_shift_id bigint
+  created_by bigint
+  created_at timestamp
+  updated_at timestamp
+}
+Ref: announcements.business_id > businesses.id // many-to-one
+Ref: announcements.created_by > users.id // many-to-one
+
+Ref: asset_types.business_id > businesses.id // many-to-one
+Ref: asset_types.created_by > users.id // many-to-one
+
+Ref: attendances.user_id > users.id // many-to-one
+Ref: attendances.work_location_id > work_locations.id // many-to-one
+Ref: attendances.business_id > businesses.id // many-to-one
+Ref: attendances.created_by > users.id // many-to-one
+
+Ref: attendance_arrears.attendance_id > attendances.id // many-to-one
+Ref: attendance_histories.actor_id > users.id // many-to-one
+Ref: attendance_histories.user_id > users.id // many-to-one
+Ref: attendance_histories.work_location_id > work_locations.id // many-to-one
+Ref: attendance_histories.business_id > businesses.id // many-to-one
+Ref: attendance_histories.created_by > users.id // many-to-one
+
+Ref: banks.business_id > businesses.id // many-to-one
+
+Ref: businesses.service_plan_id > service_plans.id // many-to-one
+
+Ref: business_subscriptions.business_id > businesses.id // many-to-one
+Ref: business_subscriptions.service_plan_id > service_plans.id // many-to-one
+
+Ref: business_times.business_id > businesses.id // many-to-one
+
+Ref: candidates.job_listing_id > job_listings.id // many-to-one
+Ref: candidates.business_id > businesses.id // many-to-one
+Ref: candidates.created_by > users.id // many-to-one
+
+Ref: comments.related_task_id > tasks.id // many-to-one
+Ref: comments.task_id > tasks.id // many-to-one
+Ref: comments.created_by > users.id // many-to-one
+
+Ref: dashboard_widgets.user_id > users.id // many-to-one
+
+Ref: departments.manager_id > users.id // many-to-one
+Ref: departments.parent_id > departments.id // many-to-one
+Ref: departments.business_id > businesses.id // many-to-one
+Ref: departments.work_location_id > work_locations.id // many-to-one
+Ref: departments.created_by > users.id // many-to-one
+
+Ref: department_announcements.department_id > departments.id // many-to-one
+Ref: department_announcements.announcement_id > announcements.id // many-to-one
+
+Ref: department_holidays.department_id > departments.id // many-to-one
+Ref: department_holidays.holiday_id > holidays.id // many-to-one
+
+Ref: department_projects.department_id > departments.id // many-to-one
+Ref: department_projects.project_id > projects.id // many-to-one
+
+Ref: department_users.department_id > departments.id // many-to-one
+Ref: department_users.user_id > users.id // many-to-one
+
+Ref: department_work_shifts.department_id > departments.id // many-to-one
+Ref: department_work_shifts.work_shift_id > work_shifts.id // many-to-one
+
+Ref: designations.business_id > businesses.id // many-to-one
+
+Ref: disabled_banks.bank_id > banks.id // many-to-one
+Ref: disabled_banks.business_id > businesses.id // many-to-one
+Ref: disabled_banks.created_by > users.id // many-to-one
+
+Ref: disabled_designations.designation_id > designations.id // many-to-one
+Ref: disabled_designations.business_id > businesses.id // many-to-one
+Ref: disabled_designations.created_by > users.id // many-to-one
+
+Ref: disabled_employment_statuses.employment_status_id > employment_statuses.id // many-to-one
+Ref: disabled_employment_statuses.business_id > businesses.id // many-to-one
+Ref: disabled_employment_statuses.created_by > users.id // many-to-one
+
+Ref: disabled_job_platforms.job_platform_id > job_platforms.id // many-to-one
+Ref: disabled_job_platforms.business_id > businesses.id // many-to-one
+Ref: disabled_job_platforms.created_by > users.id // many-to-one
+Ref: disabled_job_types.job_type_id > job_types.id // many-to-one
+Ref: disabled_job_types.business_id > businesses.id // many-to-one
+Ref: disabled_job_types.created_by > users.id // many-to-one
+
+Ref: disabled_recruitment_processes.recruitment_process_id > recruitment_processes.id // many-to-one
+Ref: disabled_recruitment_processes.business_id > businesses.id // many-to-one
+Ref: disabled_recruitment_processes.created_by > users.id // many-to-one
+
+Ref: disabled_setting_leave_types.setting_leave_type_id > setting_leave_types.id // many-to-one
+Ref: disabled_setting_leave_types.business_id > businesses.id // many-to-one
+Ref: disabled_setting_leave_types.created_by > users.id // many-to-one
+
+Ref: disabled_work_locations.work_location_id > work_locations.id // many-to-one
+Ref: disabled_work_locations.business_id > businesses.id // many-to-one
+Ref: disabled_work_locations.created_by > users.id // many-to-one
+
+Ref: email_templates.wrapper_id > email_template_wrappers.id // many-to-one
+
+Ref: employee_address_histories.user_id > users.id // many-to-one
+Ref: employee_address_histories.created_by > users.id // many-to-one
+
+Ref: employee_passport_detail_histories.user_id > users.id // many-to-one
+Ref: employee_passport_detail_histories.business_id > businesses.id // many-to-one
+Ref: employee_passport_detail_histories.created_by > users.id // many-to-one
+
+Ref: employee_pension_histories.user_id > users.id // many-to-one
+Ref: employee_pension_histories.business_id > businesses.id // many-to-one
+Ref: employee_pension_histories.created_by > users.id // many-to-one
+
+Ref: employee_project_histories.business_id > businesses.id // many-to-one
+Ref: employee_project_histories.created_by > users.id // many-to-one
+
+Ref: employee_right_to_works.user_id > users.id // many-to-one
+Ref: employee_right_to_works.business_id > businesses.id // many-to-one
+Ref: employee_right_to_works.created_by > users.id // many-to-one
+
+Ref: employee_right_to_work_histories.user_id > users.id // many-to-one
+Ref: employee_right_to_work_histories.business_id > businesses.id // many-to-one
+Ref: employee_right_to_work_histories.created_by > users.id // many-to-one
+
+Ref: employee_sponsorship_histories.user_id > users.id // many-to-one
+Ref: employee_sponsorship_histories.business_id > businesses.id // many-to-one
+Ref: employee_sponsorship_histories.created_by > users.id // many-to-one
+
+Ref: employee_visa_detail_histories.user_id > users.id // many-to-one
+Ref: employee_visa_detail_histories.business_id > businesses.id // many-to-one
+Ref: employee_visa_detail_histories.created_by > users.id // many-to-one
+
+Ref: employment_statuses.business_id > businesses.id // many-to-one
+
+Ref: holidays.business_id > businesses.id // many-to-one
+Ref: holidays.created_by > users.id // many-to-one
+
+
+
+Ref: job_listings.job_type_id > job_types.id // many-to-one
+Ref: job_listings.work_location_id > work_locations.id // many-to-one
+Ref: job_listings.department_id > departments.id // many-to-one
+Ref: job_listings.business_id > businesses.id // many-to-one
+Ref: job_listings.created_by > users.id // many-to-one
+
+Ref: job_listing_job_platforms.job_platform_id > job_platforms.id // many-to-one
+Ref: job_listing_job_platforms.job_listing_id > job_listings.id // many-to-one
+
+Ref: job_platforms.business_id > businesses.id // many-to-one
+
+Ref: leaves.leave_type_id > setting_leave_types.id // many-to-one
+Ref: leaves.user_id > users.id // many-to-one
+Ref: leaves.business_id > businesses.id // many-to-one
+Ref: leaves.created_by > users.id // many-to-one
+
+Ref: leave_approvals.leave_id > leaves.id // many-to-one
+Ref: leave_approvals.created_by > users.id // many-to-one
+
+Ref: leave_histories.actor_id > users.id // many-to-one
+Ref: leave_histories.leave_type_id > setting_leave_types.id // many-to-one
+Ref: leave_histories.user_id > users.id // many-to-one
+Ref: leave_histories.business_id > businesses.id // many-to-one
+Ref: leave_histories.created_by > users.id // many-to-one
+
+Ref: leave_records.leave_id > leaves.id // many-to-one
+
+Ref: leave_record_arrears.leave_record_id > leave_records.id // many-to-one
+
+Ref: leave_record_histories.leave_id > leaves.id // many-to-one
+
+
+
+Ref: modules.business_tier_id > business_tiers.id // many-to-one
+
+Ref: notifications.sender_id > users.id // many-to-one
+Ref: notifications.receiver_id > users.id // many-to-one
+Ref: notifications.business_id > businesses.id // many-to-one
+Ref: notifications.notification_template_id > notification_templates.id // many-to-one
+Ref: paid_leave_employment_statuses.setting_leave_id > setting_leave_types.id // many-to-one
+Ref: paid_leave_employment_statuses.employment_status_id > employment_statuses.id // many-to-one
+
+Ref: payrolls.payrun_id > payruns.id // many-to-one
+Ref: payrolls.user_id > users.id // many-to-one
+Ref: payrolls.business_id > businesses.id // many-to-one
+Ref: payrolls.created_by > users.id // many-to-one
+
+Ref: payroll_attendances.payroll_id > payrolls.id // many-to-one
+Ref: payroll_attendances.attendance_id > attendances.id // many-to-one
+
+Ref: payroll_holidays.payroll_id > payrolls.id // many-to-one
+Ref: payroll_holidays.holiday_id > holidays.id // many-to-one
+
+Ref: payroll_leave_records.payroll_id > payrolls.id // many-to-one
+Ref: payroll_leave_records.leave_record_id > leave_records.id // many-to-one
+
+Ref: payruns.created_by > users.id // many-to-one
+Ref: payruns.business_id > businesses.id // many-to-one
+Ref: payrun_departments.payrun_id > payruns.id // many-to-one
+Ref: payrun_departments.department_id > departments.id // many-to-one
+
+Ref: payrun_users.payrun_id > payruns.id // many-to-one
+Ref: payrun_users.user_id > users.id // many-to-one
+
+Ref: payslips.user_id > users.id // many-to-one
+Ref: payslips.payroll_id > payrolls.id // many-to-one
+Ref: payslips.bank_id > banks.id // many-to-one
+Ref: payslips.created_by > users.id // many-to-one
+
+Ref: projects.business_id > businesses.id // many-to-one
+Ref: projects.created_by > users.id // many-to-one
+
+Ref: recruitment_processes.business_id > businesses.id // many-to-one
+
+Ref: reminders.business_id > businesses.id // many-to-one
+Ref: reminders.created_by > users.id // many-to-one
+
+Ref: salary_histories.user_id > users.id // many-to-one
+
+Ref: service_plans.business_tier_id > business_tiers.id // many-to-one
+
+Ref: setting_attendances.business_id > businesses.id // many-to-one
+Ref: setting_attendances.created_by > users.id // many-to-one
+
+Ref: setting_attendance_special_users.setting_attendance_id > setting_attendances.id // many-to-one
+Ref: setting_attendance_special_users.user_id > users.id // many-to-one
+
+Ref: setting_leaves.business_id > businesses.id // many-to-one
+Ref: setting_leaves.created_by > users.id // many-to-one
+
+
+Ref: setting_leave_special_users.setting_leave_id > setting_leave_types.id // many-to-one
+Ref: setting_leave_special_users.user_id > users.id // many-to-one
+
+Ref: setting_leave_types.business_id > businesses.id // many-to-one
+Ref: setting_leave_types.created_by > users.id // many-to-one
+
+Ref: setting_payment_dates.business_id > businesses.id // many-to-one
+Ref: setting_payment_dates.created_by > users.id // many-to-one
+
+Ref: setting_payruns.business_id > businesses.id // many-to-one
+Ref: setting_payruns.created_by > users.id // many-to-one
+
+Ref: setting_payrun_restricted_departments.setting_payrun_id > setting_payruns.id // many-to-one
+Ref: setting_payrun_restricted_departments.department_id > departments.id // many-to-one
+
+Ref: setting_payrun_restricted_users.setting_payrun_id > setting_payruns.id // many-to-one
+Ref: setting_payrun_restricted_users.user_id > users.id // many-to-one
+
+Ref: setting_payslips.business_id > businesses.id // many-to-one
+Ref: setting_payslips.created_by > users.id // many-to-one
+
+Ref: social_sites.business_id > businesses.id // many-to-one
+Ref: social_sites.created_by > users.id // many-to-one
+
+// No foreign keys defined for statuses table
+
+Ref: tasks.project_id > projects.id // many-to-one
+Ref: tasks.parent_task_id > tasks.id // many-to-one
+Ref: tasks.assigned_by > users.id // many-to-one
+Ref: tasks.business_id > businesses.id // many-to-one
+Ref: tasks.created_by > users.id // many-to-one
+
+Ref: task_assignees.assignee_id > users.id // many-to-one
+Ref: task_assignees.task_id > tasks.id // many-to-one
+
+Ref: task_comment_mentions.comment_id > comments.id // many-to-one
+Ref: task_comment_mentions.user_id > users.id // many-to-one
+
+Ref: unpaid_leave_employment_statuses.setting_leave_id > setting_leave_types.id // many-to-one
+Ref: unpaid_leave_employment_statuses.employment_status_id > employment_statuses.id // many-to-one
+Ref: user_announcements.user_id > users.id // many-to-one
+Ref: user_announcements.announcement_id > announcements.id // many-to-one
+
+Ref: user_assets.user_id > users.id // many-to-one
+Ref: user_assets.business_id > businesses.id // many-to-one
+Ref: user_assets.created_by > users.id // many-to-one
+
+Ref: user_asset_histories.user_asset_id > user_assets.id // many-to-one
+Ref: user_asset_histories.business_id > businesses.id // many-to-one
+Ref: user_asset_histories.created_by > users.id // many-to-one
+
+Ref: user_documents.user_id > users.id // many-to-one
+Ref: user_documents.created_by > users.id // many-to-one
+
+Ref: user_education_histories.user_id > users.id // many-to-one
+Ref: user_education_histories.created_by > users.id // many-to-one
+
+Ref: user_holidays.user_id > users.id // many-to-one
+Ref: user_holidays.holiday_id > holidays.id // many-to-one
+
+Ref: user_job_histories.user_id > users.id // many-to-one
+Ref: user_job_histories.created_by > users.id // many-to-one
+
+Ref: user_notes.user_id > users.id // many-to-one
+Ref: user_notes.created_by > users.id // many-to-one
+Ref: user_notes.updated_by > users.id // many-to-one
+
+Ref: user_note_mentions.user_note_id > user_notes.id // many-to-one
+Ref: user_note_mentions.user_id > users.id // many-to-one
+
+Ref: user_projects.user_id > users.id // many-to-one
+Ref: user_projects.project_id > projects.id // many-to-one
+
+Ref: user_recruitment_processes.recruitment_process_id > recruitment_processes.id // many-to-one
+Ref: user_recruitment_processes.user_id > users.id // many-to-one
+
+Ref: user_social_sites.social_site_id > social_sites.id // many-to-one
+Ref: user_social_sites.user_id > users.id // many-to-one
+Ref: user_social_sites.created_by > users.id // many-to-one
+
+Ref: user_work_shifts.user_id > users.id // many-to-one
+Ref: user_work_shifts.work_shift_id > work_shifts.id // many-to-one
+Ref: work_locations.business_id > businesses.id // many-to-one
+
+Ref: work_shifts.business_id > businesses.id // many-to-one
+Ref: work_shifts.created_by > users.id // many-to-one
+
+Ref: work_shift_details.work_shift_id > work_shifts.id // many-to-one
+
+Ref: work_shift_detail_histories.work_shift_id > work_shifts.id // many-to-one
+
+Ref: work_shift_histories.business_id > businesses.id // many-to-one
+Ref: work_shift_histories.created_by > users.id // many-to-one

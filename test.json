@@ -1,0 +1,1779 @@
+{
+    "user_data": {
+      "id": 38,
+      "first_Name": "aaa",
+      "middle_Name": "aaa",
+      "last_Name": "aaa",
+      "NI_number": "aaa",
+      "pension_eligible": 0,
+      "user_name": "aaa.aaa.aaa",
+      "emergency_contact_details": [
+        {
+          "postcode": "aaa",
+          "last_Name": "aaa",
+          "first_Name": "aaa",
+          "address_line_1": "aaa",
+          "mobile_tel_number": "01777777777",
+          "relationship_of_above_to_you": "Daughter"
+        },
+        []
+      ],
+      "color_theme_name": "default",
+      "user_id": "FAT-0002",
+      "gender": "male",
+      "is_in_employee": 1,
+      "designation_id": 3,
+      "employment_status_id": 2,
+      "joining_date": "01-05-2012",
+      "date_of_birth": "07-05-2010",
+      "salary_per_annum": 50,
+      "weekly_contractual_hours": 40,
+      "minimum_working_days_per_week": 2,
+      "overtime_rate": 5,
+      "is_active_visa_details": 0,
+      "is_active_right_to_works": 0,
+      "phone": "01777777777",
+      "image": null,
+      "address_line_1": "aaaa",
+      "address_line_2": null,
+      "country": "aaa",
+      "city": "aaaa",
+      "postcode": "aaa",
+      "lat": null,
+      "long": null,
+      "email": "aaaa@gmail.com",
+      "email_verified_at": null,
+      "login_attempts": 0,
+      "last_failed_login_attempt_at": null,
+      "background_image": null,
+      "immigration_status": "british_citizen",
+      "is_sponsorship_offered": 0,
+      "work_location_id": 9,
+      "recruitment_process_id": null,
+      "bank_id": null,
+      "sort_code": null,
+      "account_number": null,
+      "account_name": null,
+      "is_active": 1,
+      "business_id": 1,
+      "created_by": null,
+      "deleted_at": null,
+      "created_at": "07-05-2024",
+      "updated_at": "07-05-2024",
+      "stripe_id": null,
+      "work_shift": {
+        "id": 2,
+        "name": "Default work shift",
+        "description": "",
+        "type": "regular",
+        "attendances_count": 0,
+        "is_default": 1,
+        "is_active": 1,
+        "is_business_default": 1,
+        "is_personal": 0,
+        "break_type": "unpaid",
+        "break_hours": 1,
+        "business_id": 1,
+        "created_by": null,
+        "deleted_at": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024",
+        "pivot": {
+          "user_id": 38,
+          "work_shift_id": 2
+        }
+      },
+      "department_ids": [
+        1
+      ],
+      "has_this_project": null,
+      "manages_department": true,
+      "designation": {
+        "id": 3,
+        "name": "Finance Manager"
+      },
+      "roles": [
+        {
+          "id": 10,
+          "name": "business_employee#1",
+          "guard_name": "api",
+          "created_at": "18-04-2024",
+          "updated_at": "18-04-2024",
+          "business_id": 1,
+          "is_default": 1,
+          "is_system_default": 0,
+          "is_default_for_business": 0,
+          "description": null,
+          "pivot": {
+            "model_id": 38,
+            "role_id": 10,
+            "model_type": "App\\Models\\User"
+          }
+        }
+      ],
+      "departments": [
+        {
+          "id": 1,
+          "name": "Four Arms Tech",
+          "description": null,
+          "is_active": 1,
+          "manager_id": 2,
+          "parent_id": null,
+          "business_id": 1,
+          "work_location_id": 9,
+          "created_by": 2,
+          "deleted_at": null,
+          "created_at": "18-04-2024",
+          "updated_at": "18-04-2024",
+          "total_users_count": 5,
+          "pivot": {
+            "user_id": 38,
+            "department_id": 1
+          }
+        }
+      ],
+      "employment_status": {
+        "id": 2,
+        "name": "Part-Time",
+        "color": "#3b82f6",
+        "description": "Employee works fewer hours than a full-time position.",
+        "is_active": 1,
+        "is_default": 1,
+        "business_id": null,
+        "created_by": 1,
+        "deleted_at": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024"
+      },
+      "sponsorship_details": {
+        "id": 18,
+        "user_id": 38,
+        "business_id": 1,
+        "date_assigned": "01-05-2024",
+        "expiry_date": "31-05-2024",
+        "status": "pending",
+        "note": "dzxhdxfhxdfh",
+        "certificate_number": "fjfxg",
+        "current_certificate_status": "assigned",
+        "is_sponsorship_withdrawn": 0,
+        "from_date": "12-05-2024",
+        "to_date": "12-05-2024",
+        "is_manual": 0,
+        "created_by": 2,
+        "created_at": "12-05-2024",
+        "updated_at": "12-05-2024",
+        "is_current": false
+      },
+      "passport_details": {
+        "id": 18,
+        "user_id": 38,
+        "business_id": 1,
+        "passport_number": "dghhsdgh",
+        "passport_issue_date": "01-05-2024",
+        "passport_expiry_date": "31-05-2024",
+        "place_of_issue": "Albania",
+        "from_date": "10-05-2024",
+        "to_date": "10-05-2024",
+        "is_manual": 0,
+        "created_by": 2,
+        "created_at": "12-05-2024",
+        "updated_at": "12-05-2024",
+        "is_current": false
+      },
+      "visa_details": {
+        "id": 12,
+        "user_id": 38,
+        "business_id": 1,
+        "BRP_number": "cfgjfj",
+        "visa_issue_date": "01-05-2024",
+        "visa_expiry_date": "31-05-2024",
+        "place_of_issue": "Afghanistan",
+        "visa_docs": [
+          {
+            "id": 0,
+            "file_name": "/user_files/1715517059_Screenshot_from_2024-05-12_15-21-48.png",
+            "description": "gfjxfj"
+          }
+        ],
+        "from_date": "12-05-2024",
+        "to_date": "12-05-2024",
+        "is_manual": 0,
+        "created_by": 2,
+        "created_at": "12-05-2024",
+        "updated_at": "12-05-2024",
+        "is_current": false
+      },
+      "right_to_works": {
+        "id": 30,
+        "user_id": 38,
+        "business_id": 1,
+        "right_to_work_code": "fxjfxj",
+        "right_to_work_check_date": "01-05-2024",
+        "right_to_work_expiry_date": "31-05-2024",
+        "right_to_work_docs": [
+          {
+            "id": 0,
+            "file_name": "/user_files/1715517078_Screenshot_from_2024-05-12_15-21-48.png",
+            "description": "jxfj"
+          }
+        ],
+        "from_date": "12-05-2024",
+        "to_date": "12-05-2024",
+        "is_manual": 0,
+        "created_by": 2,
+        "created_at": "12-05-2024",
+        "updated_at": "12-05-2024",
+        "is_current": false
+      },
+      "work_shifts": [
+        {
+          "id": 2,
+          "name": "Default work shift",
+          "description": "",
+          "type": "regular",
+          "attendances_count": 0,
+          "is_default": 1,
+          "is_active": 1,
+          "is_business_default": 1,
+          "is_personal": 0,
+          "break_type": "unpaid",
+          "break_hours": 1,
+          "business_id": 1,
+          "created_by": null,
+          "deleted_at": null,
+          "created_at": "18-04-2024",
+          "updated_at": "18-04-2024",
+          "pivot": {
+            "user_id": 38,
+            "work_shift_id": 2
+          }
+        }
+      ],
+      "recruitment_processes": [
+        {
+          "id": 43,
+          "recruitment_process_id": 11,
+          "user_id": 38,
+          "description": "aaa",
+          "attachments": [],
+          "created_at": "07-05-2024",
+          "updated_at": "07-05-2024"
+        }
+      ],
+      "work_location": {
+        "id": 9,
+        "name": "Four Arms Tech Office",
+        "description": null,
+        "is_active": 0,
+        "is_default": 1,
+        "business_id": 1,
+        "created_by": 2,
+        "created_at": "18-04-2024",
+        "updated_at": "13-05-2024"
+      }
+    },
+    "leave_allowance_data": [
+      {
+        "id": 7,
+        "name": "Vacation Leave",
+        "type": "paid",
+        "amount": "80",
+        "is_earning_enabled": 0,
+        "is_active": 1,
+        "is_default": 0,
+        "business_id": 1,
+        "created_by": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024",
+        "already_taken_hours": 0
+      },
+      {
+        "id": 8,
+        "name": "Sick Leave",
+        "type": "paid",
+        "amount": "40",
+        "is_earning_enabled": 0,
+        "is_active": 1,
+        "is_default": 0,
+        "business_id": 1,
+        "created_by": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024",
+        "already_taken_hours": 0
+      },
+      {
+        "id": 9,
+        "name": "Personal Leave",
+        "type": "unpaid",
+        "amount": "30",
+        "is_earning_enabled": 0,
+        "is_active": 1,
+        "is_default": 0,
+        "business_id": 1,
+        "created_by": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024",
+        "already_taken_hours": 0
+      },
+      {
+        "id": 10,
+        "name": "Maternity Leave",
+        "type": "paid",
+        "amount": "120",
+        "is_earning_enabled": 0,
+        "is_active": 1,
+        "is_default": 0,
+        "business_id": 1,
+        "created_by": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024",
+        "already_taken_hours": 0
+      },
+      {
+        "id": 11,
+        "name": "Paternity Leave",
+        "type": "paid",
+        "amount": "80",
+        "is_earning_enabled": 0,
+        "is_active": 1,
+        "is_default": 0,
+        "business_id": 1,
+        "created_by": null,
+        "created_at": "18-04-2024",
+        "updated_at": "18-04-2024",
+        "already_taken_hours": 0
+      },
+      {
+        "id": 12,
+        "name": "Bereavement Leave",
+        "type": "paid",
+        "amount": "24",
+        "is_earning_enabled": 0,
+        "is_active": 1,
+        "is_default": 0,
+        "business_id": 1,
+        "created_by": null,
+        "created_at": "18-04-2024",
+        "updated_at": "13-05-2024",
+        "already_taken_hours": 0
+      }
+    ],
+    "user_recruitment_processes_data": [
+      {
+        "id": 43,
+        "recruitment_process_id": 11,
+        "user_id": 38,
+        "description": "aaa",
+        "attachments": [],
+        "created_at": "07-05-2024",
+        "updated_at": "07-05-2024",
+        "recruitment_process": {
+          "id": 11,
+          "name": "Job Contract",
+          "description": "Ensure the job contract is provided and understood by the new employee.",
+          "is_active": 1,
+          "is_default": 1,
+          "business_id": null,
+          "created_by": 1,
+          "created_at": "18-04-2024",
+          "updated_at": "18-04-2024"
+        }
+      }
+    ],
+    "attendances_data": {
+      "data": [
+        {
+          "id": 63,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "09:00:00",
+              "out_time": "18:00:00"
+            }
+          ],
+          "note": "aa",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 38,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "02-04-2024",
+          "does_break_taken": 1,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 9,
+          "behavior": "regular",
+          "work_hours_delta": 0,
+          "regular_work_hours": 8,
+          "total_paid_hours": 8,
+          "break_type": "unpaid",
+          "break_hours": 1,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "09:00:00",
+          "work_shift_end_at": "18:00:00",
+          "work_shift_history_id": 2,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 0.19230769230769,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "07-05-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": true,
+          "employee": {
+            "id": 38,
+            "first_Name": "aaa",
+            "middle_Name": "aaa",
+            "last_Name": "aaa",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 38,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 62,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "09:00:00",
+              "out_time": "18:00:00"
+            }
+          ],
+          "note": "aaa",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 38,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "01-04-2024",
+          "does_break_taken": 1,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 9,
+          "behavior": "regular",
+          "work_hours_delta": 0,
+          "regular_work_hours": 8,
+          "total_paid_hours": 8,
+          "break_type": "unpaid",
+          "break_hours": 1,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "09:00:00",
+          "work_shift_end_at": "18:00:00",
+          "work_shift_history_id": 2,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 0.19230769230769,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "07-05-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 38,
+            "first_Name": "aaa",
+            "middle_Name": "aaa",
+            "last_Name": "aaa",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 38,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 46,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "00:00:00",
+              "out_time": "23:59:59"
+            },
+            {
+              "id": 2,
+              "in_time": "23:59:59",
+              "out_time": "23:59:59"
+            }
+          ],
+          "note": "hgjghjfg",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 3,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "23-04-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 23,
+          "behavior": "regular",
+          "work_hours_delta": 0,
+          "regular_work_hours": 23,
+          "total_paid_hours": 23,
+          "break_type": "paid",
+          "break_hours": 0,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "00:00:00",
+          "work_shift_end_at": "23:59:59",
+          "work_shift_history_id": 4,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 442.30769230769,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "02-05-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 45,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "09:00:00",
+              "out_time": "18:00:00"
+            }
+          ],
+          "note": null,
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 22,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "01-05-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 9,
+          "behavior": "regular",
+          "work_hours_delta": 0,
+          "regular_work_hours": 9,
+          "total_paid_hours": 9,
+          "break_type": "unpaid",
+          "break_hours": 1,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "09:00:00",
+          "work_shift_end_at": "18:00:00",
+          "work_shift_history_id": 2,
+          "punch_in_time_tolerance": 0.25,
+          "status": "rejected",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 1.7307692307692,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "01-05-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 22,
+            "first_Name": "Rifat",
+            "middle_Name": "al",
+            "last_Name": "ashewad",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 22,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 44,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "09:00:00",
+              "out_time": "18:00:00"
+            }
+          ],
+          "note": null,
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 10,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "01-05-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 9,
+          "behavior": "regular",
+          "work_hours_delta": 0,
+          "regular_work_hours": 9,
+          "total_paid_hours": 9,
+          "break_type": "paid",
+          "break_hours": 0.5,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "09:00:00",
+          "work_shift_end_at": "18:00:00",
+          "work_shift_history_id": 7,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 24.725274725275,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "01-05-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 10,
+            "first_Name": "Demo",
+            "middle_Name": null,
+            "last_Name": "Test",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 8,
+                "name": "Front-End Development",
+                "total_users_count": 1,
+                "pivot": {
+                  "user_id": 10,
+                  "department_id": 8
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 33,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "00:59:00",
+              "out_time": "12:02:00"
+            }
+          ],
+          "note": "hgjgjgyhjgj",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 3,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "29-04-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 23,
+          "behavior": "regular",
+          "work_hours_delta": -12,
+          "regular_work_hours": 11,
+          "total_paid_hours": 11,
+          "break_type": "paid",
+          "break_hours": 0,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "00:00:00",
+          "work_shift_end_at": "23:59:59",
+          "work_shift_history_id": 4,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 211.53846153846,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "30-04-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 32,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "00:00:00",
+              "out_time": "23:59:59"
+            }
+          ],
+          "note": "eyujerj",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 3,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "24-04-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 23,
+          "behavior": "regular",
+          "work_hours_delta": 0,
+          "regular_work_hours": 23,
+          "total_paid_hours": 23,
+          "break_type": "paid",
+          "break_hours": 0,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "00:00:00",
+          "work_shift_end_at": "23:59:59",
+          "work_shift_history_id": 4,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 442.30769230769,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "29-04-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 31,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "00:00:00",
+              "out_time": "23:59:00"
+            }
+          ],
+          "note": "cfgyjfcj",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 3,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "18-04-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 8,
+          "behavior": "late",
+          "work_hours_delta": 15,
+          "regular_work_hours": 8,
+          "total_paid_hours": 23,
+          "break_type": "unpaid",
+          "break_hours": 1,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 15,
+          "work_shift_start_at": "10:00:00",
+          "work_shift_end_at": "18:00:00",
+          "work_shift_history_id": 1,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 153.84615384615,
+          "overtime_hours_salary": 75,
+          "created_by": 2,
+          "created_at": "29-04-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 27,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "09:00:00",
+              "out_time": "18:00:00"
+            }
+          ],
+          "note": "uttt",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 10,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "23-04-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 15,
+          "behavior": "late",
+          "work_hours_delta": -6,
+          "regular_work_hours": 9,
+          "total_paid_hours": 9,
+          "break_type": "paid",
+          "break_hours": 1,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "08:00:00",
+          "work_shift_end_at": "23:00:00",
+          "work_shift_history_id": 8,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 24.725274725275,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "29-04-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 10,
+            "first_Name": "Demo",
+            "middle_Name": null,
+            "last_Name": "Test",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 8,
+                "name": "Front-End Development",
+                "total_users_count": 1,
+                "pivot": {
+                  "user_id": 10,
+                  "department_id": 8
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        },
+        {
+          "id": 26,
+          "attendance_records": [
+            {
+              "id": 1,
+              "in_time": "00:00:00",
+              "out_time": "08:00:00"
+            }
+          ],
+          "note": "asdasd",
+          "in_geolocation": null,
+          "out_geolocation": null,
+          "user_id": 3,
+          "work_location_id": 9,
+          "project_id": 1,
+          "in_date": "19-04-2024",
+          "does_break_taken": 0,
+          "in_time": null,
+          "out_time": null,
+          "capacity_hours": 9,
+          "behavior": "late",
+          "work_hours_delta": -1,
+          "regular_work_hours": 8,
+          "total_paid_hours": 8,
+          "break_type": "unpaid",
+          "break_hours": 1,
+          "is_weekend": 0,
+          "holiday_id": null,
+          "leave_record_id": null,
+          "overtime_start_time": null,
+          "overtime_end_time": null,
+          "overtime_hours": 0,
+          "work_shift_start_at": "09:00:00",
+          "work_shift_end_at": "18:00:00",
+          "work_shift_history_id": 2,
+          "punch_in_time_tolerance": 0.25,
+          "status": "approved",
+          "is_active": 1,
+          "business_id": 1,
+          "regular_hours_salary": 153.84615384615,
+          "overtime_hours_salary": 0,
+          "created_by": 2,
+          "created_at": "29-04-2024",
+          "updated_at": "13-05-2024",
+          "is_present": 1,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "work_location": {
+            "id": 9,
+            "name": "Four Arms Tech Office",
+            "description": null,
+            "is_active": 0,
+            "is_default": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "13-05-2024"
+          },
+          "project": {
+            "id": 1,
+            "name": "Four Arms Tech",
+            "description": null,
+            "start_date": "01-04-2000",
+            "end_date": null,
+            "status": "in_progress",
+            "is_default": 1,
+            "is_active": 1,
+            "business_id": 1,
+            "created_by": 2,
+            "created_at": "18-04-2024",
+            "updated_at": "18-04-2024",
+            "can_update": 1,
+            "can_delete": 1
+          }
+        }
+      ],
+      "data_highlights": {
+        "behavior": {
+          "absent": 0,
+          "regular": 7,
+          "early": 0,
+          "late": 3
+        },
+        "average_behavior": "regular",
+        "total_schedule_hours": 137,
+        "total_leave_hours": 0,
+        "total_work_availability_per_centum": 100,
+        "work_availability": "good",
+        "total_active_hours": 131,
+        "total_extra_hours": 15
+      }
+    },
+    "leaves_data": {
+      "data": [
+        {
+          "id": 90,
+          "leave_duration": "single_day",
+          "day_type": null,
+          "leave_type_id": 9,
+          "user_id": 19,
+          "date": "16-05-2024",
+          "note": "ss",
+          "start_date": "16-05-2024",
+          "end_date": "16-05-2024",
+          "status": "approved",
+          "hourly_rate": 0.96,
+          "attachments": [],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "14-05-2024",
+          "updated_at": "14-05-2024",
+          "total_leave_hours": 9,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 19,
+            "first_Name": "Md",
+            "middle_Name": "Raisul",
+            "last_Name": "Islam",
+            "image": "/user_image/1715156861_1690257995891.jpeg",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 19,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 9,
+            "name": "Personal Leave",
+            "type": "unpaid",
+            "amount": "30"
+          },
+          "records": [
+            {
+              "id": 90,
+              "leave_id": 90,
+              "date": "16-05-2024",
+              "start_time": "09:00:00",
+              "end_time": "18:00:00",
+              "capacity_hours": 9,
+              "leave_hours": 9,
+              "created_at": "14-05-2024",
+              "updated_at": "14-05-2024"
+            }
+          ]
+        },
+        {
+          "id": 89,
+          "leave_duration": "single_day",
+          "day_type": null,
+          "leave_type_id": 8,
+          "user_id": 22,
+          "date": "09-05-2024",
+          "note": "d",
+          "start_date": "09-05-2024",
+          "end_date": "09-05-2024",
+          "status": "approved",
+          "hourly_rate": 0.19,
+          "attachments": [],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "14-05-2024",
+          "updated_at": "14-05-2024",
+          "total_leave_hours": 9,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 22,
+            "first_Name": "Rifat",
+            "middle_Name": "al",
+            "last_Name": "ashewad",
+            "image": null,
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 22,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 8,
+            "name": "Sick Leave",
+            "type": "paid",
+            "amount": "40"
+          },
+          "records": [
+            {
+              "id": 89,
+              "leave_id": 89,
+              "date": "09-05-2024",
+              "start_time": "09:00:00",
+              "end_time": "18:00:00",
+              "capacity_hours": 9,
+              "leave_hours": 9,
+              "created_at": "14-05-2024",
+              "updated_at": "14-05-2024"
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "leave_duration": "single_day",
+          "day_type": null,
+          "leave_type_id": 8,
+          "user_id": 22,
+          "date": "16-05-2024",
+          "note": "d",
+          "start_date": "16-05-2024",
+          "end_date": "16-05-2024",
+          "status": "approved",
+          "hourly_rate": 0.19,
+          "attachments": [],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "13-05-2024",
+          "updated_at": "13-05-2024",
+          "total_leave_hours": 9,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 22,
+            "first_Name": "Rifat",
+            "middle_Name": "al",
+            "last_Name": "ashewad",
+            "image": null,
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 22,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 8,
+            "name": "Sick Leave",
+            "type": "paid",
+            "amount": "40"
+          },
+          "records": [
+            {
+              "id": 88,
+              "leave_id": 88,
+              "date": "16-05-2024",
+              "start_time": "09:00:00",
+              "end_time": "18:00:00",
+              "capacity_hours": 9,
+              "leave_hours": 9,
+              "created_at": "13-05-2024",
+              "updated_at": "13-05-2024"
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "leave_duration": "single_day",
+          "day_type": null,
+          "leave_type_id": 7,
+          "user_id": 22,
+          "date": "14-05-2024",
+          "note": "dd",
+          "start_date": "14-05-2024",
+          "end_date": "14-05-2024",
+          "status": "approved",
+          "hourly_rate": 0.19,
+          "attachments": [],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "13-05-2024",
+          "updated_at": "13-05-2024",
+          "total_leave_hours": 9,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 22,
+            "first_Name": "Rifat",
+            "middle_Name": "al",
+            "last_Name": "ashewad",
+            "image": null,
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 22,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 7,
+            "name": "Vacation Leave",
+            "type": "paid",
+            "amount": "80"
+          },
+          "records": [
+            {
+              "id": 87,
+              "leave_id": 87,
+              "date": "14-05-2024",
+              "start_time": "09:00:00",
+              "end_time": "18:00:00",
+              "capacity_hours": 9,
+              "leave_hours": 9,
+              "created_at": "13-05-2024",
+              "updated_at": "13-05-2024"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "leave_duration": "single_day",
+          "day_type": null,
+          "leave_type_id": 7,
+          "user_id": 22,
+          "date": "30-04-2024",
+          "note": "tedt",
+          "start_date": "30-04-2024",
+          "end_date": "30-04-2024",
+          "status": "approved",
+          "hourly_rate": 0.19,
+          "attachments": [
+            "/user_files/1715323229_Screenshot_from_2024-05-09_14-22-26.png",
+            "/user_files/1715323916_Screenshot_from_2024-05-09_12-18-18.png",
+            "/user_files/1715323922_Aesthetic_Art.jpeg"
+          ],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "09-05-2024",
+          "updated_at": "10-05-2024",
+          "total_leave_hours": 9,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 22,
+            "first_Name": "Rifat",
+            "middle_Name": "al",
+            "last_Name": "ashewad",
+            "image": null,
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 22,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 7,
+            "name": "Vacation Leave",
+            "type": "paid",
+            "amount": "80"
+          },
+          "records": [
+            {
+              "id": 85,
+              "leave_id": 85,
+              "date": "30-04-2024",
+              "start_time": "09:00:00",
+              "end_time": "18:00:00",
+              "capacity_hours": 9,
+              "leave_hours": 9,
+              "created_at": "09-05-2024",
+              "updated_at": "10-05-2024"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "leave_duration": "single_day",
+          "day_type": null,
+          "leave_type_id": 68,
+          "user_id": 3,
+          "date": "26-04-2024",
+          "note": "tttttttt",
+          "start_date": "26-04-2024",
+          "end_date": "26-04-2024",
+          "status": "approved",
+          "hourly_rate": 19.23,
+          "attachments": [],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "30-04-2024",
+          "updated_at": "30-04-2024",
+          "total_leave_hours": 23,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "image": "/user_image/1713439788_IMG20230125112859_011224.jpg",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 68,
+            "name": "qqqqqqqqqq",
+            "type": "paid",
+            "amount": "5"
+          },
+          "records": [
+            {
+              "id": 11,
+              "leave_id": 11,
+              "date": "26-04-2024",
+              "start_time": "00:00:00",
+              "end_time": "23:59:59",
+              "capacity_hours": 23,
+              "leave_hours": 23,
+              "created_at": "30-04-2024",
+              "updated_at": "30-04-2024"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "leave_duration": "half_day",
+          "day_type": "first_half",
+          "leave_type_id": 68,
+          "user_id": 3,
+          "date": "22-04-2024",
+          "note": "aaaa",
+          "start_date": "22-04-2024",
+          "end_date": "22-04-2024",
+          "status": "approved",
+          "hourly_rate": 19.23,
+          "attachments": [],
+          "is_active": 1,
+          "business_id": 1,
+          "created_by": 2,
+          "created_at": "30-04-2024",
+          "updated_at": "30-04-2024",
+          "total_leave_hours": 11,
+          "is_in_arrears": false,
+          "employee": {
+            "id": 3,
+            "first_Name": "Md",
+            "middle_Name": "Limon",
+            "last_Name": "Khan",
+            "image": "/user_image/1713439788_IMG20230125112859_011224.jpg",
+            "has_this_project": null,
+            "manages_department": true,
+            "departments": [
+              {
+                "id": 1,
+                "name": "Four Arms Tech",
+                "description": null,
+                "total_users_count": 5,
+                "pivot": {
+                  "user_id": 3,
+                  "department_id": 1
+                }
+              }
+            ]
+          },
+          "leave_type": {
+            "id": 68,
+            "name": "qqqqqqqqqq",
+            "type": "paid",
+            "amount": "5"
+          },
+          "records": [
+            {
+              "id": 10,
+              "leave_id": 10,
+              "date": "22-04-2024",
+              "start_time": "00:00:00",
+              "end_time": "11:00:00",
+              "capacity_hours": 23,
+              "leave_hours": 11,
+              "created_at": "30-04-2024",
+              "updated_at": "30-04-2024"
+            }
+          ]
+        }
+      ],
+      "data_highlights": {
+        "leave_approved_hours": 79,
+        "leave_approved_total_individual_days": 7,
+        "upcoming_leaves_hours": 2,
+        "upcoming_leaves_total_individual_days": 18,
+        "pending_leaves": 0
+      }
+    }
+  }

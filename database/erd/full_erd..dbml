@@ -1,0 +1,1081 @@
+
+Table "setting_payslips" {
+  "id" bigint(20) [not null]
+  "logo" varchar(255) [not null]
+  "title" varchar(255) [not null]
+  "address" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+Table "payrolls" {
+  "id" bigint(20) [not null]
+  "payroll_name" varchar(255) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "status" payrolls_status_enum [not null, default: 'pending_approval']
+  "start_date" date [not null]
+  "end_date" date [not null]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+}
+
+Table "payslips" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "payroll_id" bigint(20) [default: NULL, ref: > payrolls.id]
+  "payment_method" payslips_payment_method_enum [not null]
+  "month" int(11) [not null]
+  "year" int(11) [not null]
+  "payment_amount" double [not null]
+  "payment_notes" text [default: NULL]
+  "payment_date" date [not null]
+  "payslip_file" varchar(255) [default: NULL]
+  "payment_record_file" longtext [default: NULL]
+  "gross_pay" double [not null, default: 0]
+  "tax" double [not null, default: 0]
+  "employee_ni_deduction" double [not null, default: 0]
+  "employer_ni" double [not null, default: 0]
+  "bank_id" bigint(20) [default: NULL, ref: > banks.id]
+  "sort_code" varchar(255) [default: NULL]
+  "account_number" varchar(255) [default: NULL]
+  "account_name" varchar(255) [default: NULL]
+
+}
+Table "banks" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+
+
+Table "model_has_permissions" {
+  "permission_id" bigint(20) [not null, ref: > permissions.id]
+  "model_type" varchar(255) [not null]
+  "model_id" bigint(20) [not null]
+}
+
+Table "model_has_roles" {
+  "role_id" bigint(20) [not null, ref: > roles.id]
+  "model_type" varchar(255) [not null]
+  "model_id" bigint(20) [not null]
+}
+
+Table "permissions" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "guard_name" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "roles" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "guard_name" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "is_default" tinyint(1) [not null, default: 0]
+  "is_system_default" tinyint(1) [not null, default: 0]
+  "is_default_for_business" tinyint(1) [not null, default: 0]
+  "description" varchar(255) [default: NULL]
+}
+
+Table "role_has_permissions" {
+  "permission_id" bigint(20) [not null, ref: > permissions.id]
+  "role_id" bigint(20) [not null, ref: > roles.id]
+}
+
+
+Table "notifications" {
+  "id" bigint(20) [not null]
+  "entity_id" bigint(20) [not null]
+  "entity_ids" longtext [default: NULL]
+  "entity_name" varchar(255) [default: NULL]
+  "notification_title" text [not null]
+  "notification_description" text [not null]
+  "notification_link" text [not null]
+  "sender_id" bigint(20) [not null, ref: > users.id]
+  "receiver_id" bigint(20) [not null, ref: > users.id]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "is_system_generated" tinyint(1) [default: NULL]
+  "notification_template_id" bigint(20) [default: NULL]
+  "status" notifications_status_enum [default: 'unread']
+  "start_date" date [default: NULL]
+  "end_date" date [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "reminders" {
+  "id" bigint(20) [not null]
+  "title" varchar(255) [not null]
+  "model_name" varchar(255) [not null]
+  "issue_date_column" varchar(255) [not null]
+  "expiry_date_column" varchar(255) [not null]
+  "user_relationship" varchar(255) [not null]
+  "user_eligible_field" varchar(255) [not null]
+  "entity_name" varchar(255) [not null]
+  "duration" int(11) [not null]
+  "duration_unit" reminders_duration_unit_enum [not null]
+  "send_time" reminders_send_time_enum [not null]
+  "frequency_after_first_reminder" int(11) [default: NULL]
+  "reminder_limit" int(11) [default: NULL]
+  "keep_sending_until_update" tinyint(1) [not null]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+  "created_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "setting_payment_dates" {
+  "id" bigint(20) [not null]
+  "payment_type" setting_payment_dates_payment_type_enum [not null]
+  "day_of_week" tinyint(3) [default: NULL]
+  "day_of_month" tinyint(3) [default: NULL]
+  "custom_date" date [default: NULL]
+  "custom_frequency_interval" int(10) [default: NULL]
+  "custom_frequency_unit" setting_payment_dates_custom_frequency_unit_enum [default: NULL]
+  "is_active" tinyint(1) [not null, default: 0]
+  "is_default" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_by" bigint(20) [default: NULL]
+  "role_specific_settings" longtext [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "attendances" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "in_date" date [not null]
+  "is_present" tinyint(1) [not null]
+  "behavior" attendances_behavior_enum [not null]
+  "status" attendances_status_enum [not null, default: 'pending_approval']
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+  "created_at" timestamp [default: NULL]
+}
+
+
+
+
+Table "payroll_attendances" {
+  "id" bigint(20) [not null]
+  "payroll_id" bigint(20) [not null, ref: > payrolls.id]
+  "attendance_id" bigint(20) [not null, ref: > attendances.id]
+}
+
+Table "payroll_holidays" {
+  "id" bigint(20) [not null]
+  "payroll_id" bigint(20) [not null, ref: > payrolls.id]
+  "holiday_id" bigint(20) [not null, ref: > holidays.id]
+  "date" date [not null]
+}
+
+Table "payroll_leave_records" {
+  "id" bigint(20) [not null]
+  "payroll_id" bigint(20) [not null, ref: > payrolls.id]
+  "leave_record_id" bigint(20) [not null, ref: > leave_records.id]
+}
+
+Table "payruns" {
+  "id" bigint(20) [not null]
+  "period_type" payruns_period_type_enum [not null, default: 'weekly']
+  "consider_type" payruns_consider_type_enum [not null]
+  "consider_overtime" tinyint(1) [not null]
+  "is_active" tinyint(1) [not null]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+}
+
+Table "setting_payruns" {
+  "id" bigint(20) [not null]
+  "payrun_period" setting_payruns_payrun_period_enum [not null]
+  "consider_type" setting_payruns_consider_type_enum [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+Table "holidays" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "status" holidays_status_enum [not null, default: 'pending_approval']
+  "start_date" date [not null]
+  "end_date" date [not null]
+  "is_active" tinyint(1) [not null, default: 1]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+}
+
+
+Table "leave_records" {
+  "id" bigint(20) [not null]
+  "date" date [not null]
+  "start_time" time [not null]
+  "end_time" time [not null]
+  "created_at" timestamp [default: NULL]
+}
+
+Table "job_platforms" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+Table "job_types" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+  Table "recruitment_processes" {
+    "id" bigint(20) [not null]
+    "parent_id" bigint(20) [default: NULL]
+    "name" varchar(255) [not null]
+    "description" text [default: NULL]
+    "is_active" tinyint(1) [not null, default: 0]
+    "is_default" tinyint(1) [not null, default: 0]
+    "use_in_employee" tinyint(1) [not null, default: 1]
+    "use_in_on_boarding" tinyint(1) [not null, default: 1]
+    "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+    "created_by" bigint(20) [not null]
+    "created_at" timestamp [default: NULL]
+    "updated_at" timestamp [default: NULL]
+    "employee_order_no" bigint(20) [not null, default: 0]
+    "candidate_order_no" bigint(20) [not null, default: 0]
+  }
+
+Table "job_listings" {
+  "id" bigint(20) [not null]
+  "title" varchar(255) [not null]
+  "description" text [not null]
+  "minimum_salary" double(8,2) [not null]
+  "maximum_salary" double(8,2) [not null]
+  "experience_level" varchar(255) [not null]
+  "work_location_id" bigint(20) [not null]  // Assuming this references a separate table
+  "required_skills" text [not null]
+  "application_deadline" date [not null]
+  "posted_on" date [not null]
+  "is_active" tinyint(1) [not null, default: 1]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+}
+
+
+Table "candidates" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "email" varchar(255) [not null]
+  "phone" varchar(255) [not null]
+  "experience_years" int(11) [not null]
+  "education_level" candidates_education_level_enum [default: NULL]
+  "job_platform" varchar(255) [not null]
+  "application_date" date [not null]
+  "status" candidates_status_enum [not null, default: 'applied']
+  "job_listing_id" bigint(20) [not null, ref: > job_listings.id]
+  "is_active" tinyint(1) [not null, default: 1]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+}
+
+Table "candidate_job_platforms" {
+  "id" bigint(20) [not null]
+  "job_platform_id" bigint(20) [not null, ref: > job_platforms.id]
+  "candidate_id" bigint(20) [not null, ref: > candidates.id]
+}
+
+Table "candidate_recruitment_processes" {
+  "id" bigint(20) [not null]
+  "candidate_id" bigint(20) [not null, ref: > candidates.id]
+     "recruitment_process_id" bigint(20) [default: NULL, ref: > recruitment_processes.id]
+  "description" text [default: NULL]
+}
+
+
+
+Table "job_listing_job_platforms" {
+  "id" bigint(20) [not null]
+  "job_listing_id" bigint(20) [not null, ref: > job_listings.id]
+}
+Enum "leaves_leave_duration_enum" {
+  "single_day"
+  "multiple_day"
+  "half_day"
+  "hours"
+}
+
+Enum "leaves_day_type_enum" {
+  "first_half"
+  "last_half"
+}
+
+Enum "leaves_status_enum" {
+  "pending_approval"
+  "in_progress"
+  "approved"
+  "rejected"
+}
+
+Enum "leave_record_arrears_status_enum" {
+  "pending_approval"
+  "approved"
+  "rejected"
+  "completed"
+}
+
+Enum "setting_leaves_approval_level_enum" {
+  "single"
+  "multiple"
+}
+
+Enum "setting_leave_types_type_enum" {
+  "paid"
+  "unpaid"
+}
+
+
+Table "leave_types" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "type" setting_leave_types_type_enum [not null, default: 'unpaid']
+  "amount" varchar(255) [not null]
+  "is_earning_enabled" tinyint(1) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+   "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+Table "employment_statuses" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "color" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_by" bigint(20) [not null]
+}
+
+
+
+
+
+Table "leaves" {
+  "id" bigint(20) [not null]
+  "leave_duration" leaves_leave_duration_enum [not null]
+  "leave_type_id" bigint(20) [not null, ref: > leave_types.id]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "date" date [default: NULL]
+  "note" varchar(255) [not null]
+  "start_date" date [default: NULL]
+  "end_date" date [default: NULL]
+  "status" leaves_status_enum [not null, default: 'pending_approval']
+  "hourly_rate" double [not null]
+  "is_active" tinyint(1) [not null, default: 1]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+}
+
+
+Table "leave_approvals" {
+  "id" bigint(20) [not null]
+  "is_approved" tinyint(1) [not null]
+  "leave_id" bigint(20) [not null, ref: > leaves.id]
+  "created_by" bigint(20) [not null, ref: > users.id]
+}
+
+
+Table "leave_record_arrears" {
+  "id" bigint(20) [not null]
+  "leave_record_id" bigint(20) [not null, ref: > leave_records.id]
+  "status" leave_record_arrears_status_enum [not null, default: 'pending_approval']
+}
+
+Table "leave_type_employment_statuses" {
+  "id" bigint(20) [not null]
+  "setting_leave_type_id" bigint(20) [not null, ref: > leave_types.id]
+  "employment_status_id" bigint(20) [default: NULL, ref: > employment_statuses.id]
+}
+
+Table "setting_leaves" {
+  "id" bigint(20) [not null]
+  "start_month" tinyint(4) [not null]
+  "approval_level" setting_leaves_approval_level_enum [not null, default: 'single']
+  "allow_bypass" tinyint(1) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+     "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+
+Table "employee_address_histories" {
+  "id" bigint(20)
+  "user_id" bigint(20)  [ref: > users.id]
+  "address_line_1" varchar(255) [default: NULL]
+  "country" varchar(255) [default: NULL]
+  "from_date" date [not null]
+  "to_date" date [default: NULL]
+}
+
+Table "employee_passport_detail_histories" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20)  [ref: > users.id]
+  "passport_number" varchar(255) [not null]
+  "passport_issue_date" date [not null]
+  "passport_expiry_date" date [not null]
+  "from_date" date [not null]
+  "to_date" date [default: NULL]
+}
+
+Table "employee_pension_histories" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [ref: > users.id]
+  "pension_eligible" tinyint(1) [not null]
+  "from_date" date [not null]
+  "to_date" date [default: NULL]
+}
+
+Table "employee_project_histories" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "start_date" date [not null]
+  "end_date" date [default: NULL]
+  "status" employee_project_histories_status_enum [not null]
+  "business_id" bigint(20)  [ref: > businesses.id]
+}
+
+Table "employee_sponsorship_histories" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20)  [ref: > users.id]
+  "date_assigned" date [not null]
+  "status" employee_sponsorship_histories_status_enum [not null]
+  "from_date" date [not null]
+  "to_date" date [default: NULL]
+}
+
+Table "salary_histories" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20)  [ref: > users.id]
+  "salary_per_annum" double [default: 0]
+  "from_date" date [not null]
+}
+
+Table "user_education_histories" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [ref: > users.id]
+  "degree" varchar(255) [not null]
+  "graduation_date" date [not null]
+  "start_date" date [not null]
+}
+
+Table "user_job_histories" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20)  [ref: > users.id]
+  "company_name" varchar(255) [not null]
+  "job_title" varchar(255) [not null]
+  "employment_start_date" date [not null]
+}
+
+Table "user_projects" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20)  [ref: > users.id]
+  "project_id" bigint(20)  [ref: > projects.id]
+}
+
+Table "projects" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "start_date" date [not null]
+  "end_date" date [default: NULL]
+  "status" projects_status_enum [not null]
+  "business_id" bigint(20)  [ref: > businesses.id]
+}
+
+Enum "projects_status_enum" {
+  "pending"
+  "in_progress"
+  "completed"
+}
+
+Enum "attendances_behavior_enum" {
+  "absent"
+  "late"
+  "regular"
+  "early"
+}
+
+Enum "attendances_break_type_enum" {
+  "paid"
+  "unpaid"
+}
+
+Enum "attendances_status_enum" {
+  "pending_approval"
+  "approved"
+  "rejected"
+}
+
+Enum "attendance_histories_behavior_enum" {
+  "absent"
+  "late"
+  "regular"
+  "early"
+}
+
+Enum "attendance_histories_break_type_enum" {
+  "paid"
+  "unpaid"
+}
+
+Enum "attendance_histories_status_enum" {
+  "pending_approval"
+  "approved"
+  "rejected"
+}
+
+Enum "attendance_arrears_status_enum" {
+  "pending_approval"
+  "approved"
+  "rejected"
+  "completed"
+}
+
+
+
+
+
+Table "attendance_projects" {
+  "id" bigint(20) [pk, not null]
+  "attendance_id" bigint(20) [ref: > attendances.id]
+  "project_id" bigint(20) [ref: > projects.id]
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "attendance_arrears" {
+  "id" bigint(20) [pk, not null]
+  "attendance_id" bigint(20) [ref: > attendances.id]
+  "status" attendance_arrears_status_enum [not null, default: 'pending_approval']
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "setting_attendances" {
+  "id" bigint(20) [pk, not null]
+  "punch_in_time_tolerance" double
+  "work_availability_definition" int(11)
+  "punch_in_out_alert" tinyint(1)
+  "punch_in_out_interval" int(11)
+  "alert_area" longtext
+  "service_name" varchar(255)
+  "api_key" text
+  "auto_approval" tinyint(1)
+  "is_geolocation_enabled" tinyint(1)
+  "is_active" tinyint(1) [not null, default: 0]
+  "is_default" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [ref: > businesses.id]
+  "created_by" bigint(20)
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+
+
+Table "departments" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+}
+
+Table "department_holidays" {
+  "id" bigint(20) [not null]
+  "department_id" bigint(20) [default: NULL, ref: > departments.id]
+  "holiday_id" bigint(20) [not null, ref: > holidays.id]
+}
+
+
+
+Table "user_holidays" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [default: NULL, ref: > users.id]
+  "holiday_id" bigint(20) [not null, ref: > holidays.id]
+}
+
+
+
+Table "users" {
+  "id" bigint(20) [not null]
+  "first_Name" varchar(255) [not null]
+  "last_Name" varchar(255) [not null]
+  "user_name" varchar(255) [default: NULL]
+  "gender" users_gender_enum [default: NULL]
+  "is_in_employee" tinyint(1) [default: 0]
+  "designation_id" bigint(20) [default: NULL, ref: > designations.id]
+    "bank_id" bigint(20) [default: NULL, ref: > banks.id]
+    "sort_code" varchar(255) [default: NULL]
+    "account_number" varchar(255) [default: NULL]
+    "account_name" varchar(255) [default: NULL]
+  "employment_status_id" bigint(20) [default: NULL, ref: > employment_statuses.id]
+  "joining_date" date [default: '2024-08-03']
+  "email" varchar(255) [not null]
+  "password" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+
+Table "department_users" {
+  "id" bigint(20) [not null]
+  "department_id" bigint(20) [default: NULL, ref: > departments.id]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "designations" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_by" bigint(20) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+Table "social_sites" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "icon" varchar(255) [not null]
+  "link" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "user_social_sites" {
+  "id" bigint(20) [not null]
+  "social_site_id" bigint(20) [default: NULL, ref: > social_sites.id]
+  "user_id" bigint(20) [default: NULL, ref: > users.id]
+  "profile_link" varchar(255) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "user_work_locations" {
+  "id" bigint(20) [not null]
+  "work_location_id" bigint(20) [not null, ref: > work_locations.id]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "work_locations" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 0]
+   "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+}
+
+
+
+Table "access_revocations" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "email_access_revoked" tinyint(1) [not null]
+  "system_access_revoked_date" date [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "exit_interviews" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "exit_interview_conducted" tinyint(1) [not null]
+  "date_of_exit_interview" date [default: NULL]
+  "interviewer_name" varchar(255) [default: NULL]
+  "key_feedback_points" text [default: NULL]
+  "assets_returned" tinyint(1) [not null]
+  "attachments" longtext [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+  "termination_id" bigint(20) [not null, ref: > terminations.id]
+}
+
+Table "terminations" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "termination_type_id" bigint(20) [not null, ref: > termination_types.id]
+  "termination_reason_id" bigint(20) [not null, ref: > termination_reasons.id]
+  "date_of_termination" date [not null]
+  "joining_date" date [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+  "final_paycheck_date" date [default: NULL]
+  "final_paycheck_amount" decimal(10,2) [default: NULL]
+  "unused_vacation_compensation_amount" decimal(10,2) [default: NULL]
+  "unused_sick_leave_compensation_amount" decimal(10,2) [default: NULL]
+  "severance_pay_amount" decimal(10,2) [default: NULL]
+  "benefits_termination_date" date [default: NULL]
+  "continuation_of_benefits_offered" tinyint(1) [default: NULL]
+}
+
+Table "termination_reasons" {
+  "id" bigint(20) [not null]
+  "parent_id" bigint(20) [default: NULL]
+  "name" varchar(255) [not null]
+  "description" text [default: NULL]
+  "is_active" tinyint(1) [not null, default: 0]
+  "is_default" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_by" bigint(20) [not null]
+  "deleted_at" timestamp [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "termination_types" {
+  "id" bigint(20) [not null]
+  "parent_id" bigint(20) [default: NULL]
+  "name" varchar(255) [not null]
+  "description" text [default: NULL]
+  "is_active" tinyint(1) [not null, default: 0]
+  "is_default" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "created_by" bigint(20) [not null]
+  "deleted_at" timestamp [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "recruitment_process_orders" {
+  "id" bigint(20) [not null]
+  "recruitment_process_id" bigint(20) [not null, ref: > recruitment_processes.id]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "employee_order_no" int(11) [not null]
+  "candidate_order_no" int(11) [not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "user_recruitment_processes" {
+  "id" bigint(20) [not null]
+  "recruitment_process_id" bigint(20) [default: NULL, ref: > recruitment_processes.id]
+  "user_id" bigint(20) [default: NULL, ref: > users.id]
+  "description" text [default: NULL]
+  "attachments" longtext [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+Table "user_letters" {
+  "id" bigint(20) [not null]
+  "issue_date" date [not null]
+  "letter_content" text [not null]
+  "status" varchar(255) [not null]
+  "sign_required" tinyint(1) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "attachments" longtext [not null]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+  "created_by" bigint(20) [not null]
+  "deleted_at" timestamp [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+  "email_sent" tinyint(1) [not null, default: 0]
+  "letter_view_required" tinyint(1) [not null, default: 0]
+  "letter_viewed" tinyint(1) [not null, default: 0]
+}
+
+Table "user_letter_email_histories" {
+  "id" bigint(20) [not null]
+  "user_letter_id" bigint(20) [not null, ref: > user_letters.id]
+  "sent_at" timestamp [default: NULL]
+  "recipient_email" varchar(255) [not null]
+  "email_content" text [default: NULL]
+  "status" varchar(255) [not null]
+  "error_message" text [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "user_notes" {
+  "id" bigint(20) [not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "title" varchar(255) [not null]
+  "description" text [not null]
+  "history" longtext [default: NULL]
+  "created_by" bigint(20) [default: NULL]
+  "updated_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "user_note_mentions" {
+  "id" bigint(20) [not null]
+  "user_note_id" bigint(20) [not null, ref: > user_notes.id]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+Table "businesses" {
+  "id" bigint(20) [pk, not null]
+  "reseller_id" bigint(20) [ref: > users.id, default: NULL]
+  "name" varchar(255) [not null]
+  "start_date" date [not null]
+  "trail_end_date" date [default: NULL]
+  "about" text [default: NULL]
+  "web_page" varchar(255) [default: NULL]
+  "identifier_prefix" varchar(255) [default: NULL]
+  "phone" varchar(255) [default: NULL]
+  "email" varchar(255) [default: NULL]
+  "additional_information" text [default: NULL]
+  "address_line_1" varchar(255) [default: NULL]
+  "address_line_2" varchar(255) [default: NULL]
+  "lat" varchar(255) [default: NULL]
+  "long" varchar(255) [default: NULL]
+  "country" varchar(255) [not null]
+  "city" varchar(255) [not null]
+  "postcode" varchar(255) [default: NULL]
+  "currency" varchar(255) [default: NULL]
+  "logo" varchar(255) [default: NULL]
+  "image" varchar(255) [default: NULL]
+  "background_image" varchar(255) [default: NULL]
+  "service_plan_id" bigint(20) [default: NULL]
+  "service_plan_discount_code" varchar(255) [default: NULL]
+  "service_plan_discount_amount" double [default: NULL]
+  "pension_scheme_registered" tinyint(1) [not null, default: 0]
+  "pension_scheme_name" varchar(255) [default: NULL]
+  "pension_scheme_letters" longtext [default: NULL]
+  "status" varchar(255) [not null, default: 'pending']
+  "is_active" tinyint(1) [not null, default: 0]
+  "is_self_registered_businesses" tinyint(1) [not null, default: 0]
+  "number_of_employees_allowed" int(11) [default: 0]
+  "owner_id" bigint(20) [ref: > users.id, not null]
+  "created_by" bigint(20)
+  "deleted_at" timestamp [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+  "in_geolocation" varchar(255) [default: NULL]
+  "out_geolocation" varchar(255) [default: NULL]
+}
+
+Table "business_email_settings" {
+  "id" bigint(20) [pk, not null]
+  "business_id" bigint(20) [ref: > businesses.id, not null]
+  "mail_driver" varchar(255) [default: NULL]
+  "mail_host" varchar(255) [default: NULL]
+  "mail_port" int(11) [default: NULL]
+  "mail_username" varchar(255) [default: NULL]
+  "mail_password" varchar(255) [default: NULL]
+  "mail_encryption" varchar(255) [default: NULL]
+  "mail_from_address" varchar(255) [default: NULL]
+  "mail_from_name" varchar(255) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "business_pension_histories" {
+  "id" bigint(20) [pk, not null]
+  "pension_scheme_registered" tinyint(1) [not null, default: 0]
+  "pension_scheme_name" varchar(255) [default: NULL]
+  "pension_scheme_letters" longtext [default: NULL]
+  "business_id" bigint(20) [ref: > businesses.id, not null]
+  "created_by" bigint(20)
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "business_times" {
+  "id" bigint(20) [pk, not null]
+  "day" int(11) [not null]
+  "start_at" time [default: NULL]
+  "end_at" time [default: NULL]
+  "is_weekend" tinyint(1) [not null]
+  "business_id" bigint(20) [ref: > businesses.id, not null]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+Enum "user_assets_status_enum" {
+  "available"
+  "assigned"
+  "returned"
+  "damaged"
+  "lost"
+  "reserved"
+  "repair_waiting"
+}
+
+Enum "user_asset_histories_status_enum" {
+  "available"
+  "assigned"
+  "returned"
+  "damaged"
+  "lost"
+  "reserved"
+  "repair_waiting"
+}
+
+
+
+Table "asset_types" {
+  "id" bigint(20) [pk, not null]
+  "parent_id" bigint(20) [ref: > asset_types.id]
+  "name" varchar(255) [not null]
+  "is_active" tinyint(1) [not null, default: 1]
+  "is_default" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [ref: > businesses.id]
+  "created_by" bigint(20)
+  "deleted_at" timestamp
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+
+Table "user_assets" {
+  "id" bigint(20) [pk, not null]
+  "user_id" bigint(20) [ref: > users.id]
+  "business_id" bigint(20) [ref: > businesses.id]
+  "name" varchar(255) [not null]
+  "code" varchar(255) [not null]
+  "serial_number" varchar(255) [not null]
+  "is_working" tinyint(1) [not null]
+  "status" user_assets_status_enum [not null, default: 'available']
+  "type" varchar(255) [not null]
+  "image" varchar(255)
+  "date" date [not null]
+  "note" text [not null]
+  "created_by" bigint(20)
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+Table "user_asset_histories" {
+  "id" bigint(20) [pk, not null]
+  "user_id" bigint(20) [ref: > users.id]
+  "user_asset_id" bigint(20) [ref: > user_assets.id]
+  "business_id" bigint(20)
+  "name" varchar(255) [not null]
+  "code" varchar(255) [not null]
+  "serial_number" varchar(255) [not null]
+  "is_working" tinyint(1) [not null]
+  "status" user_asset_histories_status_enum [not null, default: 'available']
+  "type" varchar(255) [not null]
+  "image" varchar(255)
+  "date" date [not null]
+  "note" text [not null]
+  "from_date" date [not null]
+  "to_date" date
+  "created_by" bigint(20)
+  "created_at" timestamp
+  "updated_at" timestamp
+}
+
+
+Table "user_announcements" {
+  "id" bigint(20) [pk, not null]
+  "user_id" bigint(20) [not null, ref: > users.id]
+  "announcement_id" bigint(20) [not null, ref: > announcements.id]
+  "status" user_announcements_status_enum [default: 'unread']
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+Table "announcements" {
+  "id" bigint(20) [pk, not null]
+  "name" varchar(255) [not null]
+  "start_date" date [not null]
+  "end_date" date [not null]
+  "description" text [not null]
+  "is_active" tinyint(1) [not null, default: 1]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+  "created_by" bigint(20) [ref: > users.id]
+  "deleted_at" timestamp [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+Enum "business_subscriptions_status_enum" {
+  "active"
+  "canceled"
+}
+
+Table "modules" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "is_enabled" tinyint(1) [not null, default: 0]
+  "created_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "reseller_modules" {
+  "id" bigint(20) [not null]
+  "is_enabled" tinyint(1) [not null, default: 0]
+  "reseller_id" bigint(20) [default: NULL, ref: > users.id]
+  "module_id" bigint(20) [default: NULL, ref: > modules.id]
+  "created_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "service_plans" {
+  "id" bigint(20) [not null]
+  "name" varchar(255) [not null]
+  "description" text [default: NULL]
+  "set_up_amount" double [not null]
+  "duration_months" double [not null]
+  "price" double [not null]
+  "number_of_employees_allowed" int(11) [not null, default: 10]
+  "created_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "service_plan_discount_codes" {
+  "id" bigint(20) [not null]
+  "code" varchar(255) [not null]
+  "discount_amount" double [not null]
+  "service_plan_id" bigint(20) [not null, ref: > service_plans.id]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "service_plan_modules" {
+  "id" bigint(20) [not null]
+  "is_enabled" tinyint(1) [not null, default: 0]
+  "service_plan_id" bigint(20) [default: NULL, ref: > service_plans.id]
+  "module_id" bigint(20) [default: NULL, ref: > modules.id]
+  "created_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "business_subscriptions" {
+  "id" bigint(20) [not null]
+  "business_id" bigint(20) [not null, ref: > businesses.id]
+  "service_plan_id" bigint(20) [not null, ref: > service_plans.id]
+  "start_date" datetime [not null]
+  "end_date" datetime [not null]
+  "status" business_subscriptions_status_enum [not null, default: 'active']
+  "amount" double [default: NULL]
+  "paid_at" timestamp [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+Table "business_modules" {
+  "id" bigint(20) [not null]
+  "is_enabled" tinyint(1) [not null, default: 0]
+  "business_id" bigint(20) [default: NULL, ref: > businesses.id]
+  "module_id" bigint(20) [default: NULL, ref: > modules.id]
+  "created_by" bigint(20) [default: NULL]
+  "created_at" timestamp [default: NULL]
+  "updated_at" timestamp [default: NULL]
+}
+
+
+
+
+
