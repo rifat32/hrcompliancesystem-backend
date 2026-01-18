@@ -34,7 +34,6 @@ class WorkLocationController extends Controller
     public function __construct(WorkLocationComponent $workLocationComponent)
     {
         $this->workLocationComponent = $workLocationComponent;
-
     }
 
     /**
@@ -365,7 +364,7 @@ class WorkLocationController extends Controller
      *         required=true,
      *  example="6"
      *      ),
-*      * *  @OA\Parameter(
+     *      * *  @OA\Parameter(
      * name="is_active",
      * in="query",
      * description="is_active",
@@ -449,7 +448,7 @@ class WorkLocationController extends Controller
             //     ], 401);
             // }
 
-   $work_locations = $this->workLocationComponent->getWorkLocations();
+            $work_locations = $this->workLocationComponent->getWorkLocations();
 
 
             return response()->json($work_locations, 200);
@@ -458,7 +457,7 @@ class WorkLocationController extends Controller
             return $this->sendError($e);
         }
     }
- /**
+    /**
      *
      * @OA\Get(
      *      path="/v1.0/work-locations/{id}",
@@ -530,12 +529,12 @@ class WorkLocationController extends Controller
 
                 ->first();
 
-                if (!$work_location) {
+            if (!$work_location) {
 
-                    return response()->json([
-                        "message" => "no data found"
-                    ], 404);
-                }
+                return response()->json([
+                    "message" => "no data found"
+                ], 404);
+            }
 
 
 
@@ -601,74 +600,73 @@ class WorkLocationController extends Controller
      */
 
 
-   public function getCurrentTimeWorkLocationId($id, Request $request)
-{
-    try {
-        // Permission check (commented)
-        // if (!$request->user()->hasPermissionTo('work_location_view')) {
-        //     return response()->json([
-        //         "message" => "You can not perform this action"
-        //     ], 401);
-        // }
+    public function getCurrentTimeWorkLocationId($id, Request $request)
+    {
+        try {
+            // Permission check (commented)
+            // if (!$request->user()->hasPermissionTo('work_location_view')) {
+            //     return response()->json([
+            //         "message" => "You can not perform this action"
+            //     ], 401);
+            // }
 
-        $work_location = WorkLocation::where([
+            $work_location = WorkLocation::where([
                 "work_locations.id" => $id,
                 // "business_id" => auth()->user()->business_id
             ])->first();
 
-        if (!$work_location) {
+            if (!$work_location) {
+                return response()->json([
+                    "message" => "no data found"
+                ], 404);
+            }
+
+            if (!$work_location->latitude || !$work_location->longitude) {
+                return response()->json([
+                    "message" => "invalid latitude or longitude"
+                ], 404);
+            }
+
+            $latitude = $work_location->latitude;
+            $longitude = $work_location->longitude;
+            $timestamp = time(); // current UNIX timestamp
+
+            // Directly using the API key
+            $api_key = config('services.google.maps_key');
+            $url = "https://maps.googleapis.com/maps/api/timezone/json?location={$latitude},{$longitude}&timestamp={$timestamp}&key={$api_key}";
+
+            $response = Http::get($url);
+
+            if (!$response->successful()) {
+                return response()->json([
+                    "message" => "Failed to fetch timezone data"
+                ], 500);
+            }
+
+            $data = $response->json();
+
+            if ($data['status'] !== 'OK') {
+                return response()->json([
+                    "message" => "Timezone API returned error: " . $data['status']
+                ], 500);
+            }
+
+            $dst_offset = $data['dstOffset'];
+            $raw_offset = $data['rawOffset'];
+            $total_offset = $dst_offset + $raw_offset;
+            $local_time = gmdate("Y-m-d H:i:s", $timestamp + $total_offset);
+
             return response()->json([
-                "message" => "no data found"
-            ], 404);
-        }
-
-        if (!$work_location->latitude || !$work_location->longitude) {
+                "timezone" => $data['timeZoneId'],
+                "local_time" => $local_time,
+            ], 200);
+        } catch (Exception $e) {
             return response()->json([
-                "message" => "invalid latitude or longitude"
-            ], 404);
-        }
-
-        $latitude = $work_location->latitude;
-        $longitude = $work_location->longitude;
-        $timestamp = time(); // current UNIX timestamp
-
-        // Directly using the API key
-        $api_key = "AIzaSyDDYMTvjZTukYsyOyvw7Kp_a0vrHd6vQAo";
-        $url = "https://maps.googleapis.com/maps/api/timezone/json?location={$latitude},{$longitude}&timestamp={$timestamp}&key={$api_key}";
-
-        $response = Http::get($url);
-
-        if (!$response->successful()) {
-            return response()->json([
-                "message" => "Failed to fetch timezone data"
+                "message" => "Internal Server Error",
+                "error" => $e->getMessage()
             ], 500);
         }
-
-        $data = $response->json();
-
-        if ($data['status'] !== 'OK') {
-            return response()->json([
-                "message" => "Timezone API returned error: " . $data['status']
-            ], 500);
-        }
-
-        $dst_offset = $data['dstOffset'];
-        $raw_offset = $data['rawOffset'];
-        $total_offset = $dst_offset + $raw_offset;
-        $local_time = gmdate("Y-m-d H:i:s", $timestamp + $total_offset);
-
-        return response()->json([
-            "timezone" => $data['timeZoneId'],
-            "local_time" => $local_time,
-        ], 200);
-
-    } catch (Exception $e) {
-        return response()->json([
-            "message" => "Internal Server Error",
-            "error" => $e->getMessage()
-        ], 500);
     }
-}
 
 
 
@@ -769,7 +767,7 @@ class WorkLocationController extends Controller
 
             $conflicts = [];
 
-            $conflictingUsersExists = User::whereHas("work_locations", function($query) use($existingIds) {
+            $conflictingUsersExists = User::whereHas("work_locations", function ($query) use ($existingIds) {
                 $query->whereIn("work_location_id", $existingIds);
             })->exists();
 
@@ -828,4 +826,3 @@ class WorkLocationController extends Controller
         }
     }
 }
-
