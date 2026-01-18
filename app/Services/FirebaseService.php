@@ -13,14 +13,15 @@ class FirebaseService
 
     public function __construct()
     {
-        $this->client = new Google_Client();
-        $this->client->setAuthConfig(storage_path('firebase/tide-hr-firebase-adminsdk-fbsvc-8fa5c302c2.json'));
-        $this->client->addScope('https://www.googleapis.com/auth/firebase.messaging');
-        if (!empty(config('services.firebase.client_email'))) {
-            $this->client->setSubject(config('services.firebase.client_email'));
-        }
-        $this->client->refreshTokenWithAssertion();
-        $this->accessToken = $this->client->getAccessToken()['access_token'];
+        // $this->client = new Google_Client();
+        // $this->client->setAuthConfig(storage_path('firebase/tide-hr-firebase-adminsdk-fbsvc-8fa5c302c2.json'));
+        // $this->client->addScope('https://www.googleapis.com/auth/firebase.messaging');
+        // if (!empty(config('services.firebase.client_email'))) {
+        //     $this->client->setSubject(config('services.firebase.client_email'));
+        // }
+        // $this->client->refreshTokenWithAssertion();
+        // $this->accessToken = $this->client->getAccessToken()['access_token'];
+        $this->accessToken = null;
     }
 
     /**
@@ -34,6 +35,13 @@ class FirebaseService
      */
     public function sendNotificationToDevice(string $deviceToken, string $title, string $body, array $data = []): array
     {
+        if (!$this->accessToken) {
+            return [
+                "success" => false,
+                "message" => "Firebase authentication is currently disabled."
+            ];
+        }
+
         // Your Firebase project ID
         $projectId = config('services.firebase.project_id');
 
