@@ -205,7 +205,15 @@ class Department extends Model
 
     public function getTotalUsersCountAttribute()
     {
-        return DepartmentUser::where('department_id', $this->id)->count();
+
+        return $this->users()
+            ->whereNotIn('users.id', [auth()->user()->id])
+                        ->whereDate("users.joining_date", "<=", today())
+                        ->whereDoesntHave("lastTermination", function ($query) {
+                            $query->where('terminations.date_of_termination', "<", today())
+                                ->whereRaw('terminations.date_of_termination > users.joining_date');
+                        })
+            ->count();
     }
 
 

@@ -858,9 +858,7 @@ class DepartmentController extends Controller
                         ->whereDoesntHave("lastTermination", function ($query) {
                             $query->where('terminations.date_of_termination', "<", today())
                                 ->whereRaw('terminations.date_of_termination > users.joining_date');
-                        })
-
-                    ;
+                        });
                 },
                 "job_listings"
             ])
@@ -873,10 +871,7 @@ class DepartmentController extends Controller
                         "id" => request()->input("id")
                     ]);
                 })
-                ->addSelect([
-                    'total_users_count' => DepartmentUser::selectRaw('COUNT(*)')
-                        ->whereColumn('departments.id', 'department_id')
-                ])
+                
                 ->orderBy('id', 'ASC')
                 ->get();
 
